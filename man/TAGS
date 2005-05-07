@@ -1,0 +1,196 @@
+
+as.capacity-methods.Rd,0
+
+as.card.capacity-methods.Rd,0
+
+as.card.game-methods.Rd,0
+
+as.card.set.func-methods.Rd,0
+
+as.game-methods.Rd,0
+
+as.Mobius.capacity-methods.Rd,0
+
+as.Mobius.card.set.func-methods.Rd,0
+
+as.Mobius.game-methods.Rd,0
+
+as.Mobius.set.func-methods.Rd,0
+
+as.set.func-methods.Rd,0
+
+capacity-class.Rd,176
+     \item{\code{n}:}{Object of class \code{ode26,758
+    \item{\code{subsets}:}{Object of class \code{ode29,912
+    \item{\code{data}:}{Object of class \code{ode33,1111
+
+card.capacity-class.Rd,113
+    \item{\code{n}:}{Object of class \code{ode24,785
+    \item{\code{data}:}{Object of class \code{ode27,943
+
+card.game-class.Rd,113
+    \item{\code{n}:}{Object of class \code{ode19,526
+    \item{\code{data}:}{Object of class \code{ode22,684
+
+card.set.func-class.Rd,143
+      function is is28,975
+    \item{\code{n}:}{Object of class \code{ode26,836
+    \item{\code{data}:}{Object of class \code{ode30,1008
+
+card.set.func.gen.Rd,146
+    function for for28,718
+  \code{ode12,269
+  from an object of class \code{ode13,335
+  \item{object}{An object of class \code{ode25,520
+
+Choquet.integral-methods.Rd,36
+  object of class \code{ode13,424
+
+dual-methods.Rd,0
+
+entropy.capa.ident.Rd,0
+
+entropy-methods.Rd,20
+  \code{ode13,364
+
+favor-methods.Rd,42
+  of an object of class \code{ode13,361
+
+game-class.Rd,174
+    \item{\code{n}:}{Object of class \code{ode19,538
+    \item{\code{subsets}:}{Object of class \code{ode22,687
+    \item{\code{data}:}{Object of class \code{ode26,886
+
+interaction.indices-methods.Rd,0
+
+is.cardinal-methods.Rd,0
+
+is.kadditive-methods.Rd,27
+  function can can13,428
+
+is.monotone-methods.Rd,20
+  \code{ode14,398
+
+is.normalized-methods.Rd,0
+
+k.truncate.Mobius-methods.Rd,0
+
+least.squares.capa.ident.Rd,57
+\description{Creates an object of class \code{ode6,113
+
+ls.sorting.capa.ident.Rd,42
+  is an object of class \code{ode10,410
+
+ls.sorting.treatment.Rd,107
+  \item{minmax.P}{Object of class \code{ode65,2693
+  \item{Choquet.A}{Object of class \code{ode69,2906
+
+mini.var.capa.ident.Rd,57
+\description{Creates an object of class \code{ode6,106
+
+Mobius.capacity-class.Rd,352
+     \item{\code{n}:}{Object of class \code{ode25,710
+    \item{\code{k}:}{Object of class \code{ode29,881
+    \item{\code{subsets}:}{Object of class \code{ode33,1090
+    \item{\code{data}:}{Object of class \code{ode37,1282
+Class \code{Mobius.set.func}, by class \code{ode47,1610
+Class \code{superclass.set.func}, by class \code{ode48,1669
+
+Mobius.card.gen.Rd,147
+\description{Creates objects of class \code{ode7,148
+  an object of class \code{ode8,220
+   \item{object}{An object of class \code{ode15,311
+
+Mobius.card.set.func-class.Rd,113
+    \item{\code{n}:}{Object of class \code{ode21,507
+    \item{\code{data}:}{Object of class \code{ode25,706
+
+Mobius.game-class.Rd,291
+    \item{\code{n}:}{Object of class \code{ode18,486
+    \item{\code{k}:}{Object of class \code{ode22,656
+   \item{\code{subsets}:}{Object of class \code{ode26,863
+    \item{\code{data}:}{Object of class \code{ode30,1054
+Class \code{superclass.set.func}, by class \code{ode39,1334
+
+Mobius.gen.Rd,326
+  \code{ode10,248
+  \code{Mobius.capacity} from an object of class \code{ode11,301
+  \item{n}{An object of class \code{ode21,498
+  \item{k}{An object of class \code{ode24,643
+  \item{object}{Object of class \code{ode28,854
+  \item{v}{An object of class \code{ode33,1058
+ Return objects of class \code{ode38,1180
+
+Mobius-methods.Rd,0
+
+Mobius.set.func-class.Rd,232
+    \item{\code{n}:}{Object of class \code{ode27,858
+    \item{\code{k}:}{Object of class \code{ode32,1029
+    \item{\code{subsets}:}{Object of class \code{ode37,1237
+    \item{\code{data}:}{Object of class \code{ode42,1430
+
+normalize-methods.Rd,106
+  \code{ode12,364
+  the case of objects of class \code{ode13,434
+  objects of class \code{ode16,648
+
+orness-methods.Rd,42
+  of an object of class \code{ode12,366
+
+round-methods.Rd,0
+
+set.func-class.Rd,175
+    \item{\code{n}:}{Object of class \code{ode26,741
+    \item{\code{subsets}:}{Object of class \code{ode30,903
+    \item{\code{data}:}{Object of class \code{ode34,1102
+
+set.func.gen.Rd,238
+\description{These functions create objects of class \code{ode8,132
+  \code{game}, or \code{capacity} from objects of class \code{ode9,202
+  \item{object}{An object of class \code{ode18,346
+Return objects of class \code{ode24,519
+
+Shapley.value-methods.Rd,36
+  object of class \code{ode13,391
+
+show-methods.Rd,0
+
+Sipos.integral-methods.Rd,70
+  given either under the form of an object of class \code{ode13,425
+
+Sugeno.integral-methods.Rd,0
+
+summary-methods.Rd,0
+
+summary.superclass.capacity-class.Rd,691
+\description{Class containing most of the indices that can be used to summarize an object of class \code{ode8,194
+\section{Objects from the Class}{Objects are created by calls of the form \code{summary(...)} on objects of class \code{ode10,323
+    \item{\code{Shapley.value}:}{Object of class \code{ode14,497
+    \item{\code{interaction.indices}:}{Object of class \code{ode15,610
+    \item{\code{orness}:}{Object of class \code{ode16,742
+    \item{\code{veto}:}{Object of class \code{ode17,893
+    \item{\code{favor}:}{Object of class \code{ode18,1043
+    \item{\code{variance}:}{Object of class \code{ode19,1195
+    \item{\code{entropy}:}{Object of class \code{ode20,1308
+
+summary.superclass.set.func-class.Rd,724
+\description{Class containing most of the indices that can be used to summarize an object of class \code{ode8,194
+\description{Class containing most of the indices that can be used to summarize an object of class \code{superclass.set.func} and not of class \code{ode8,194
+\section{Objects from the Class}{Objects are created by calls of the form \code{summary(...)} on objects of class \code{ode10,367
+\section{Objects from the Class}{Objects are created by calls of the form \code{summary(...)} on objects of class \code{superclass.set.func} and not of class \code{ode10,367
+    \item{\code{Shapley.value}:}{Object of class \code{ode14,585
+    \item{\code{interaction.indices}:}{Object of class \code{ode15,698
+
+superclass.capacity-class.Rd,0
+
+superclass.set.func-class.Rd,0
+
+to.data.frame-methods.Rd,0
+
+variance-methods.Rd,86
+  capacity can be given either under the form of an object of class \code{ode12,304
+
+veto-methods.Rd,42
+  of an object of class \code{ode13,353
+
+zeta-methods.Rd,0

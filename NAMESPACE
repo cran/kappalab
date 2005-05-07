@@ -1,0 +1,79 @@
+useDynLib(kappalab)
+
+## Generics and functions defined in this package
+export(
+       "set.func",
+       "game",
+       "capacity",
+       "card.set.func",
+       "Mobius.card.set.func",
+       "card.game",
+       "card.capacity",
+       "lower.capacity",
+       "upper.capacity",
+       "uniform.capacity",
+       "Mobius.set.func",
+       "Mobius.game",
+       "Mobius.capacity",
+       "additive.capacity",
+       "entropy.capa.ident",
+       "mini.var.capa.ident",
+       "least.squares.capa.ident",
+       "ls.sorting.capa.ident",
+       "ls.sorting.treatment"
+       )
+
+exportClasses(
+              "superclass.set.func",
+              "superclass.capacity",
+              "set.func",
+              "game",
+              "capacity",
+              "card.set.func",
+              "Mobius.card.set.func",
+              "card.game",
+              "card.capacity",
+              "Mobius.set.func",
+              "Mobius.game",
+              "Mobius.capacity",
+              "summary.superclass.set.func",
+              "summary.superclass.capacity"
+              )
+
+exportMethods(
+              "as.set.func",
+              "as.game",
+              "as.capacity",
+              "as.card.set.func",
+              "as.card.game",
+              "as.card.capacity",
+              "as.Mobius.set.func",
+              "as.Mobius.game",
+              "as.Mobius.capacity",
+              "as.Mobius.card.set.func",
+              "Mobius",
+              "zeta",
+              "dual",
+              "k.truncate.Mobius",
+              "normalize",
+              "Shapley.value",
+              "interaction.indices",
+              "show",
+              "summary",
+              "round",
+              "is.cardinal",
+              "is.monotone",
+              "is.kadditive",
+              "is.normalized",
+              "Choquet.integral",
+              "Sugeno.integral",
+              "Sipos.integral",
+              "veto",
+              "favor",
+              "orness",
+              "variance",
+              "entropy",
+              "to.data.frame"            
+              )
+
+
