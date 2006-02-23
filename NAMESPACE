@@ -18,9 +18,13 @@ export(
        "additive.capacity",
        "entropy.capa.ident",
        "mini.var.capa.ident",
+       "mini.dist.capa.ident",
+       "lin.prog.capa.ident",
        "least.squares.capa.ident",
        "ls.sorting.capa.ident",
-       "ls.sorting.treatment"
+       "ls.sorting.treatment",
+       "ls.ranking.capa.ident",
+       "heuristic.ls.capa.ident"
        )
 
 exportClasses(

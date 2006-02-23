@@ -1,16 +1,17 @@
-\name{mini.var.capa.ident}
-\alias{mini.var.capa.ident}
+\name{lin.prog.capa.ident}
+\alias{lin.prog.capa.ident}
 
-\title{Minimum variance capacity identification}
+\title{Capacity identification based on linear programming}
 
-\description{Creates an object of class \code{Mobius.capacity} using a
-  maximum like quadratic entropy principle, which is equivalent to the minimization of the
-  variance. More precisely, this function determines, if it exists, the minimum
-  variance capacity compatible with a set of linear constraints. The
-  problem is solved using strictly convex quadratic programming.}
+\description{Creates an object of class \code{Mobius.capacity} using the
+  linear programming approach proposed by Marichal and Roubens (see
+  reference hereafter). Roughly speaking, this function determines, if it
+  exists, the capacity compatible with a set of linear constraints that
+  "separates" the most the provided alternatives. The problem is solved
+  using the \pkg{lpSolve} package.}
 
 \usage{
-mini.var.capa.ident(n, k, A.Choquet.preorder = NULL,
+lin.prog.capa.ident(n, k, A.Choquet.preorder = NULL,
 A.Shapley.preorder = NULL, A.Shapley.interval = NULL,
 A.interaction.preorder = NULL, A.interaction.interval = NULL,
 A.inter.additive.partition = NULL, epsilon = 1e-6)
@@ -90,8 +91,8 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
  
 }
 \details{
-   The quadratic program is solved using the \code{solve.QP} function of
-   the \pkg{quadprog} package.
+   The linear program is solved using the \code{lp} function of
+   the \pkg{lpSolve}.
  }
 
 \value{
@@ -102,9 +103,7 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
   
   \item{value}{Value of the objective function.}
 
-  \item{iterations}{Information returned by \code{solve.QP}.}
-
-  \item{iact}{Information returned by \code{solve.QP}.}
+  \item{lp.object}{Object of class \code{lp.object} returned by \code{lpSolve}.}
 }
 \references{
   K. Fujimoto and T. Murofushi (2000) \emph{Hierarchical decomposition of the
@@ -112,14 +111,15 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
   Applications, M. Grabisch, T. Murofushi, and M. Sugeno Eds, Physica
   Verlag, pages 95-103.
   
-  I. Kojadinovic (2005), \emph{Minimum variance capacity
-    identification}, European Journal of Operational Research, in press.
+  J-L. Marichal and M. Roubens (2000), \emph{Determination of weights
+    of interacting criteria from a reference set}, European Journal of
+  Operational Research 124, pages 641-650.
   
 }
 
 \seealso{
   \code{\link{Mobius.capacity-class}},
-  \cr \code{\link{lin.prog.capa.ident}},
+  \cr \code{\link{mini.var.capa.ident}},
   \cr \code{\link{mini.dist.capa.ident}},
   \cr \code{\link{least.squares.capa.ident}},
   \cr \code{\link{heuristic.ls.capa.ident}},
@@ -176,9 +176,10 @@ Aip <- rbind(c(1,2,3,4,-delta.I),
 Aii <- rbind(c(1,2,-0.2,-0.15))
 
 
-## a minimum variance 2-additive solution
-min.var <- mini.var.capa.ident(5,2,A.Choquet.preorder = Acp)              
-m <- min.var$solution
+\dontrun{
+## a LP 2-additive solution
+lin.prog <- lin.prog.capa.ident(5,2,A.Choquet.preorder = Acp)              
+m <- lin.prog$solution
 m
 
 ## the resulting global evaluations
@@ -191,11 +192,11 @@ rbind(c(a,mean(a),Choquet.integral(m,a)),
 ## the Shapley value
 Shapley.value(m)
 
-## a minimum variance 3-additive more constrained solution
-min.var2 <- mini.var.capa.ident(5,3,
+## a LP 3-additive more constrained solution
+lin.prog2 <- lin.prog.capa.ident(5,3,
                                    A.Choquet.preorder = Acp,
                                    A.Shapley.preorder = Asp)
-m <- min.var2$solution
+m <- lin.prog2$solution
 m
 rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(b,mean(b),Choquet.integral(m,b)),
@@ -204,15 +205,15 @@ rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(e,mean(e),Choquet.integral(m,e)))
 Shapley.value(m)
 
-## a minimum variance 5-additive more constrained solution
-min.var3 <- mini.var.capa.ident(5,5,
+## a LP 5-additive more constrained solution
+lin.prog3 <- lin.prog.capa.ident(5,5,
                                    A.Choquet.preorder = Acp,
                                    A.Shapley.preorder = Asp,
                                    A.Shapley.interval = Asi,
                                    A.interaction.preorder = Aip,
                                    A.interaction.interval = Aii)
 
-m <- min.var3$solution
+m <- lin.prog3$solution
 m
 rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(b,mean(b),Choquet.integral(m,b)),
@@ -220,7 +221,7 @@ rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(d,mean(d),Choquet.integral(m,d)),
       c(e,mean(e),Choquet.integral(m,e)))
 summary(m)
-
+}
 }
 
 \keyword{math}

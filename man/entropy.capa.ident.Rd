@@ -46,8 +46,13 @@ entropy.capa.ident(d, entropy = "renyi", parameter = 1)
   
 \seealso{
   \code{\link{capacity-class}},
+  \cr \code{\link{lin.prog.capa.ident}},
+  \cr \code{\link{mini.var.capa.ident}},
+  \cr \code{\link{mini.dist.capa.ident}},
   \cr \code{\link{least.squares.capa.ident}},
-  \cr \code{\link{mini.var.capa.ident}}.  
+  \cr \code{\link{heuristic.ls.capa.ident}},
+  \cr \code{\link{ls.sorting.capa.ident}},
+  \cr \code{\link{ls.ranking.capa.ident}}.  
 }
 
 \examples{

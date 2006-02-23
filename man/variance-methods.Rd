@@ -24,7 +24,8 @@
 
 
 \references{
-I. Kojadinovic (2005), \emph{Minimum variance capacity identification}, submitted.
+  I. Kojadinovic (2005), \emph{Minimum variance capacity
+    identification}, European Journal of Operational Research, in press.
 }
 
 \seealso{

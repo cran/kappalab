@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic  
+# Copyright or © or Copr. Michel Grabisch and Ivan Kojadinovic  
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -44,10 +44,12 @@
 
 *****************************************************************************/
 
-#ifndef KAPPALAB_LEASTSQUARES_H
-#define KAPPALAB_LEASTSQUARES_H
+#ifndef KAPPALAB_MINDIST_H
+#define KAPPALAB_MINDIST_H
 
-void k_additive_objectif(int *n, int *k, int *subset, int *Integral, double *X,
-			 int *nX, double *R, double *xl, double *xu);
+void objective_function_Choquet_coefficients(int *n, double *D);
+void objective_function_binary_alternatives(int *n, int *k, int *subset, int *B);
+void objective_function_global_scores(int *n, int *k1, int*k2, int *subset, double *Q);
 
-#endif /* ! KAPPALAB_LEASTSQUARES_H */
+
+#endif /* ! KAPPALAB_MINDIST_H */

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic    
+# Copyright  2005 Michel Grabisch, Ivan Kojadinovic, and Patrick Meyer
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -35,31 +35,38 @@
 #
 ##############################################################################
 
-## Minimum variance capacity identification
+## Least squares ranking capacity identification
 
 ##############################################################################
 
-## Constructs a Mobius.capacity object by means of a quadratic program 
-
-mini.var.capa.ident <- function(n, k,
-                                      A.Choquet.preorder = NULL,
-                                      A.Shapley.preorder = NULL,
-                                      A.Shapley.interval = NULL,
-                                      A.interaction.preorder = NULL,
-                                      A.interaction.interval = NULL,
-                                      A.inter.additive.partition = NULL,
-                                      epsilon = 1e-6) {
-
+ls.ranking.capa.ident <- function(n, k, C, rk, d,
+                                A.Shapley.preorder = NULL,
+                                A.Shapley.interval = NULL,
+                                A.interaction.preorder = NULL,
+                                A.interaction.interval = NULL,
+                                A.inter.additive.partition = NULL,
+                                sigf = 5,
+                                maxiter = 20,
+				epsilon = 1e-6) {
+    
     ## check n and k
-    if (!(as.integer(n) == n && k %in% 1:n))
+    if (!(as.integer(n) == n && k %in% 1:n))## check n and k
         stop("wrong arguments")
 
-    ## check A.Choquet.preorder
-    if (!((is.matrix(A.Choquet.preorder)
-           && dim(A.Choquet.preorder)[2] == 2*n+1) 
-          || is.null(A.Choquet.preorder)))
-        stop("wrong Choquet preorder constraint matrix")
+    ## number of alternatives
+    n.var.alt <- dim(C)[1]
     
+    ## check C
+    if (!(is.matrix(C) && dim(C)[2] == n)) 
+        stop("wrong criteria matrix")
+    
+    ## check rk
+	if (!(is.matrix(rk) && dim(rk)[2] == 2)) 
+        stop("wrong criteria matrix")
+
+    
+    Integral <- "Choquet"
+
     ## check A.Shapley.preorder
     if (!((is.matrix(A.Shapley.preorder) && dim(A.Shapley.preorder)[2] == 3) 
           || is.null(A.Shapley.preorder)))
@@ -94,74 +101,95 @@ mini.var.capa.ident <- function(n, k,
     if (!(is.positive(epsilon) && epsilon <= 1e-3))
         stop("wrong epsilon value")
 
-    ## number of variables
-    n.var <- binom.sum(n,k) - 1
+
+        
+    ## number of variables linked to the capacity
+    n.var.a <- binom.sum(n,k) - 1
+
+    ## total number of variables
+    n.var <- n.var.a + n.var.alt
 
     ## number of monotonicity constraints
     n.con <- n*2^(n-1)
 
+    ## infinity value
+    infty  <- 1000
+
+     
     ## k power set in natural order
     subsets <-  .C("k_power_set", 
                    as.integer(n),
                    as.integer(k),
-                   subsets = integer(n.var+1),
+                   subsets = integer(n.var.a+1),
                    PACKAGE="kappalab")$subsets
 
+        
     ## monotonicity constraints
     A <- .C("monotonicity_constraints", 
             as.integer(n), 
             as.integer(k),
             as.integer(subsets),
-            A = integer(n.var * n.con),
+            A = integer(n.var.a * n.con),
             PACKAGE="kappalab")$A
 
 
-    A <- matrix(A,n.con,n.var,byrow=TRUE)
-
-    ## quadratic form
-    D.Shapley <- .C("objective_function_Choquet_coefficients", 
-                    as.integer(n), 
-                    D = double(n.con),
-                    PACKAGE="kappalab")$D		
-
-    Dmat <- t(A) %*% diag(D.Shapley) %*% A
+    A <- matrix(A,n.con,n.var.a,byrow=TRUE)
+    A <- cbind(A,matrix(0,n.con,n.var.alt))
 
     ## add the normalization constraint sum a(T) = 1
-    A <- rbind(rep(1,n.var),A)
-    bvec <- c(1,rep(epsilon,n.con))
-    meq <- 1
-    
-    ## add the constraints relative to the preorder of the alternatives
-    if (!is.null(A.Choquet.preorder)) {
-        
-        for (i in 1:dim(A.Choquet.preorder)[1]) {
-            
-            cpc <- Choquet.preorder.constraint(n,k,subsets,
-                                               A.Choquet.preorder[i,][1:n],
-                                               A.Choquet.preorder[i,][(n+1):(2*n)],
-                                               A.Choquet.preorder[i,2*n+1])
+    A <- rbind(c(rep(1,n.var.a),numeric(n.var.alt)),A)
+    b <- c(1,rep(epsilon,n.con))
+    r <- c(0,rep(1,n.con))
+ 
+    ## a part of the objectif matrix R'R
+    obj <-  .C("k_additive_objectif", 
+             as.integer(n),
+             as.integer(k),
+             as.integer(subsets),
+             as.integer(Integral == "Choquet"),
+             as.double(t(C)),
+             as.integer(n.var.alt),
+             R = double(n.var.alt * n.var.a),
+             l = double(n.var.a),
+             u = double(n.var.a), 
+             PACKAGE="kappalab")
 
-            A <- rbind(A,cpc$A)
-            bvec <- c(bvec,cpc$b)	
-        }	
-    }
+    Rmat <- cbind(matrix(obj$R,n.var.alt,n.var.a,byrow=TRUE),
+    diag(-1,n.var.alt,n.var.alt))
+    Dmat <- t(Rmat) %*% Rmat
     
-    ## add the constraints relative to the preorder of the criteria
+    ## constraints relative to the order on the prototypes
+
+	for (i in 1:dim(rk)[1]){
+		proto.constraint <- numeric(n.var.alt)
+		proto.constraint[rk[i,2]]=-1
+		proto.constraint[rk[i,1]] = 1
+		A <- rbind(A, c(numeric(n.var.a), proto.constraint))
+		b <- c(b, d)
+		r <- c(r, infty - (-infty) - d)
+	}
+
+
+
+     ## add the constraints relative to the preorder of the criteria
     if (!is.null(A.Shapley.preorder)) {
         
         for (i in 1:dim(A.Shapley.preorder)[1]) {
             
-            spc <- Shapley.preorder.constraint(n,k,subsets,
-                                             A.Shapley.preorder[i,1],
-                                             A.Shapley.preorder[i,2],
-                                             A.Shapley.preorder[i,3])
+          spc <- Shapley.preorder.constraint(n,k,subsets,
+                                               A.Shapley.preorder[i,1],
+                                               A.Shapley.preorder[i,2],
+                                               A.Shapley.preorder[i,3])
             
-            A <- rbind(A,spc$A)
-            bvec <- c(bvec,spc$b)	
+          spc$A <- c(spc$A, numeric(n.var.alt))
+          A <- rbind(A, spc$A)
+          b <- c(b,spc$b)
+          r <- c(r,spc$r)
         }	
     }
 
-    ## add the constraints relative to the importance of the criteria
+ 
+    ## add the constraints relative to the absolute importance of the criteria
     if (!is.null(A.Shapley.interval)) {
         
         for (i in 1:dim(A.Shapley.interval)[1]) {
@@ -171,13 +199,11 @@ mini.var.capa.ident <- function(n, k,
                                                A.Shapley.interval[i,2],
                                                A.Shapley.interval[i,3])
 
-            ## Sh(i) >= a
-            A <- rbind(A,sic$A)
-            bvec <- c(bvec,sic$b)
-            ## - Sh(i) >= -b
-            A <- rbind(A,-sic$A)
-            bvec <- c(bvec,-(sic$b + sic$r))
+            sic$A <- c(sic$A,numeric(n.var.alt))
             
+            A <- rbind(A,sic$A)
+            b <- c(b,sic$b)
+            r <- c(r,sic$r)
         }	
     }
 
@@ -187,14 +213,16 @@ mini.var.capa.ident <- function(n, k,
         for (i in 1:dim(A.interaction.preorder)[1]) {
             
             ipc <- interaction.preorder.constraint(n,k,subsets,
-                                             A.interaction.preorder[i,1],
-                                             A.interaction.preorder[i,2],
-                                             A.interaction.preorder[i,3],
-                                             A.interaction.preorder[i,4],
-                                             A.interaction.preorder[i,5])
+                                                   A.interaction.preorder[i,1],
+                                                   A.interaction.preorder[i,2],
+                                                   A.interaction.preorder[i,3],
+                                                   A.interaction.preorder[i,4],
+                                                   A.interaction.preorder[i,5])
+            ipc$A <- c(ipc$A,numeric(n.var.alt))
             
             A <- rbind(A,ipc$A)
-            bvec <- c(bvec,ipc$b)	
+            b <- c(b,ipc$b)
+            r <- c(r,ipc$r)	
         }	
     }
 
@@ -209,12 +237,10 @@ mini.var.capa.ident <- function(n, k,
                                                    A.interaction.interval[i,3],
                                                    A.interaction.interval[i,4])
 
-            ## I(ij) >= a
+            iic$A <- c(iic$A, numeric(n.var.alt))
             A <- rbind(A,iic$A)
-            bvec <- c(bvec,iic$b)
-            ## I(ij) <= b
-            A <- rbind(A,-iic$A)
-            bvec <- c(bvec,-(iic$b+iic$r))
+            b <- c(b,iic$b)
+            r <- c(r,iic$r)
         }	
     }
 
@@ -225,19 +251,46 @@ mini.var.capa.ident <- function(n, k,
         iapc <- inter.additive.partition.constraint(n,k,subsets,
                                                  A.inter.additive.partition)
 
-        A <- rbind(iapc$A,A)
-        bvec <- c(iapc$b,bvec)
-        meq <- meq + length(iapc$b)
+        zeros <- matrix(numeric(n.var.alt * dim(iapc$A)[1]),dim(iapc$A)[1],n.var.alt)
+
+        iapc$A <- cbind(iapc$A, zeros)
+        A <- rbind(A,iapc$A)
+        b <- c(b,iapc$b)
+        r <- c(r,iapc$r)
     }
-    
 
-    ## quadprog
-    qp <- solve.QP(2*Dmat,rep(0,n.var),t(A),bvec,meq = meq)
 
-    return(list(solution = Mobius.capacity(c(0,qp$solution),n,k),
-                value = qp$value, iterations = qp$iterations,
-                iact = qp$iact))    
+    ## the global scores on the alternatives can vary between
+    ## -infinity and +infinity
     
+    l<-c(obj$l,rep(-infty,n.var.alt))
+    u<-c(obj$u,rep(+infty,n.var.alt))
+    
+    ## ipop quadratic program solver
+    qp <- ipop(matrix(0,n.var,1), 
+     		Dmat,
+		A,
+		matrix(b),
+		matrix(l),
+		matrix(u),
+		matrix(r),
+		sigf,
+		maxiter,
+		verb=0)
+      
+    ## solution   
+	
+	Choquet.C <- numeric(dim(C)[1])
+	for (i in 1:(dim(C)[1]))
+		Choquet.C[i] <- Choquet.integral(Mobius.capacity(c(0,qp@primal[1:n.var.a]),n,k),C[i,])
+
+	rk.C <- rank(round(Choquet.C,4), ties.method="min")
+
+	return(list(solution = Mobius.capacity(c(0,qp@primal[1:n.var.a]),n,k),
+		glob.eval = qp@primal[(n.var.a+1):(n.var.a+n.var.alt)],
+		how = qp@how,
+		rk.C = rk.C,
+		Choquet.C = Choquet.C))
 } 
 
 ##############################################################################

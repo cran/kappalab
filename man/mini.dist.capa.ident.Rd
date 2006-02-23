@@ -1,30 +1,40 @@
-\name{mini.var.capa.ident}
-\alias{mini.var.capa.ident}
+\name{mini.dist.capa.ident}
+\alias{mini.dist.capa.ident}
 
-\title{Minimum variance capacity identification}
+\title{Minimum distance capacity identification}
 
 \description{Creates an object of class \code{Mobius.capacity} using a
-  maximum like quadratic entropy principle, which is equivalent to the minimization of the
-  variance. More precisely, this function determines, if it exists, the minimum
-  variance capacity compatible with a set of linear constraints. The
+  minimum distance principle. More precisely, this function determines,
+  if it exists, the closest capacity to a user-given game compatible
+  with a set of linear constraints. The distance can be chosen among
+  three quadratic distances (see help and references hereafter). The
   problem is solved using strictly convex quadratic programming.}
 
 \usage{
-mini.var.capa.ident(n, k, A.Choquet.preorder = NULL,
-A.Shapley.preorder = NULL, A.Shapley.interval = NULL,
-A.interaction.preorder = NULL, A.interaction.interval = NULL,
-A.inter.additive.partition = NULL, epsilon = 1e-6)
+mini.dist.capa.ident(a, k, distance = "Choquet.coefficients",
+A.Choquet.preorder = NULL, A.Shapley.preorder = NULL,
+A.Shapley.interval = NULL, A.interaction.preorder = NULL,
+A.interaction.interval = NULL, A.inter.additive.partition = NULL,
+epsilon = 1e-6)
 }
 
 \arguments{
   
-  \item{n}{Object of class \code{numeric} containing the
-    number of elements of the set on which the object of class
-    \code{Mobius.capacity} is to be defined.}
+  \item{a}{Object of class \code{Mobius.game} containing the
+    \enc{Möbius}{Mobius} transform of the game to be approached.}
   
   \item{k}{Object of class \code{numeric} imposing that the solution is at
     most a k-additive capacity (the \enc{Möbius}{Mobius} transform of subsets whose cardinal is
     superior to \code{k} vanishes).}
+
+  \item{distance}{Object of class \code{character} indicating which
+    quadratic distance is to be used in the objective function. The choice
+    \code{distance = "Choquet.coefficients"} will result in the
+    minimization of the average distance  between Choquet integral
+    coefficients, the choice \code{distance = "binary.alternatives"}
+    will result in the minimization of the average distance between binary
+    alternatives, and the choice \code{distance = "global.scores"} will
+    result in the minimization of the average distance between global scores.}
   
   \item{A.Choquet.preorder}{Object of class \code{matrix} containing the
     constraints relative to the preorder of the alternatives. Each line
@@ -112,15 +122,15 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
   Applications, M. Grabisch, T. Murofushi, and M. Sugeno Eds, Physica
   Verlag, pages 95-103.
   
-  I. Kojadinovic (2005), \emph{Minimum variance capacity
-    identification}, European Journal of Operational Research, in press.
+  I. Kojadinovic (2005), \emph{Quadratic objective functions for
+    capacity and bi-capacity identification and approximation}, submitted.
   
 }
 
 \seealso{
   \code{\link{Mobius.capacity-class}},
   \cr \code{\link{lin.prog.capa.ident}},
-  \cr \code{\link{mini.dist.capa.ident}},
+  \cr \code{\link{mini.var.capa.ident}},
   \cr \code{\link{least.squares.capa.ident}},
   \cr \code{\link{heuristic.ls.capa.ident}},
   \cr \code{\link{ls.sorting.capa.ident}},
@@ -175,27 +185,34 @@ Aip <- rbind(c(1,2,3,4,-delta.I),
 ## i.e. -0.20 <= I(12) <= -0.15 
 Aii <- rbind(c(1,2,-0.2,-0.15))
 
+## the capacity that we want to approach
+x <- runif(31)
+for (i in 2:31)
+    x[i] <- x[i] + x[i-1]
+mu <- normalize(capacity(c(0,x)))
+## and its Mobius transform
+a.mu <- Mobius(mu)
 
-## a minimum variance 2-additive solution
-min.var <- mini.var.capa.ident(5,2,A.Choquet.preorder = Acp)              
-m <- min.var$solution
+## some basic checks
+\dontrun{
+mini.dist.capa.ident(a.mu,5)
+mini.dist.capa.ident(a.mu,5,"binary.alternatives")
+mini.dist.capa.ident(a.mu,5,"global.scores")
+mini.dist.capa.ident(a.mu,3)
+mini.dist.capa.ident(a.mu,3,"binary.alternatives")
+mini.dist.capa.ident(a.mu,3,"global.scores")
+}
+
+## a minimum distance 2-additive solution
+min.dist <- mini.dist.capa.ident(a.mu,2,"binary.alternatives",A.Choquet.preorder = Acp)              
+m <- min.dist$solution
 m
 
-## the resulting global evaluations
-rbind(c(a,mean(a),Choquet.integral(m,a)),
-      c(b,mean(b),Choquet.integral(m,b)),
-      c(c,mean(c),Choquet.integral(m,c)),
-      c(d,mean(d),Choquet.integral(m,d)),
-      c(e,mean(e),Choquet.integral(m,e)))
-
-## the Shapley value
-Shapley.value(m)
-
-## a minimum variance 3-additive more constrained solution
-min.var2 <- mini.var.capa.ident(5,3,
+## a minimum distance 3-additive more constrained solution
+min.dist2 <- mini.dist.capa.ident(a.mu,3,"global.scores",
                                    A.Choquet.preorder = Acp,
                                    A.Shapley.preorder = Asp)
-m <- min.var2$solution
+m <- min.dist2$solution
 m
 rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(b,mean(b),Choquet.integral(m,b)),
@@ -204,15 +221,16 @@ rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(e,mean(e),Choquet.integral(m,e)))
 Shapley.value(m)
 
-## a minimum variance 5-additive more constrained solution
-min.var3 <- mini.var.capa.ident(5,5,
+\dontrun{
+## a minimum distance 5-additive more constrained solution
+min.dist3 <- mini.dist.capa.ident(a.mu,5,
                                    A.Choquet.preorder = Acp,
                                    A.Shapley.preorder = Asp,
                                    A.Shapley.interval = Asi,
                                    A.interaction.preorder = Aip,
                                    A.interaction.interval = Aii)
 
-m <- min.var3$solution
+m <- min.dist3$solution
 m
 rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(b,mean(b),Choquet.integral(m,b)),
@@ -220,6 +238,7 @@ rbind(c(a,mean(a),Choquet.integral(m,a)),
       c(d,mean(d),Choquet.integral(m,d)),
       c(e,mean(e),Choquet.integral(m,e)))
 summary(m)
+}
 
 }
 

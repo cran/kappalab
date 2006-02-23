@@ -44,10 +44,14 @@
 
 *****************************************************************************/
 
-#ifndef KAPPALAB_LEASTSQUARES_H
-#define KAPPALAB_LEASTSQUARES_H
+#ifndef KAPPALAB_MOBIUSBOUNDS_H
+#define KAPPALAB_MOBIUSBOUNDS_H
 
-void k_additive_objectif(int *n, int *k, int *subset, int *Integral, double *X,
-			 int *nX, double *R, double *xl, double *xu);
+int difference (int i,int j,int n);
+int lower_bound (int i,int n);
+int upper_bound (int i,int n);
+int maximal(int p,int i,int *index);
+int minimal(int p,int i,int *index);
+void Mobius_lower_bound(int *n, int *k, int *subset, double *lower);
 
-#endif /* ! KAPPALAB_LEASTSQUARES_H */
+#endif /* ! KAPPALAB_MOBIUSBOUNDS_H */

@@ -1,31 +1,14 @@
-\name{ls.sorting.capa.ident}
-\alias{ls.sorting.capa.ident}
+\name{ls.ranking.capa.ident}
+\alias{ls.ranking.capa.ident}
 
-\title{Least squares capacity identification in the framework of a sorting procedure}
+\title{Least squares capacity identification in the framework of a ranking procedure}
 
 \description{
-  Sorting alternatives means assigning each alternative to a predefined
-  ordered class. The aim of the implemented method is to model a given classification (sorting)
-  of the alternatives by means of a Choquet integral. The result of the function
-  is an object of class \code{Mobius.capacity}. This function (in
-  combination with \code{ls.sorting.treatment}) is an implementation of
-  the TOMASO method; see Meyer and Roubens (2005). The input data are
-  given under the form of a set of alternatives and associated classes,
-  each alternative being described according to a set of criteria. These
-  well-known alternatives are called "prototypes". They represent
-  alternatives for which the decision maker has an a priori knowledge
-  and that he/she is able to assign to one of the
-  ordered classes. If the provided classification of the prototypes cannot be
-  described by a Choquet integral, an approximative solution, which minimizes
-  the "gap" between the given classification and the one derived from
-  the Choquet integral, is proposed. The problem is solved by quadratic
-  programming. This function should be used in combination with
-  \code{ls.sorting.treatment} which allows to evaluate the model which
-  has been built and to assign other alternatives to the ordered classes.
+	Ranking alternatives means ordering them from the best to the worst alternative. The aim of the implemented method is to model a given ranking by means of a Choquet integral. The result of the function is an object of class \code{Mobius.capacity}. This function is an implementation of the TOMASO method (see Meyer and Roubens (2005)) in the particular ranking framework. The input data are given under the form of a set of alternatives and a partial weak order, each alternative being described according to a set of criteria. These well-known alternatives are called "prototypes". They represent alternatives for which the decision maker has an a priori knowledge and for which he/she is able to build a ranking. If the provided ranking (partial weak order) of the prototypes cannot be described by a Choquet integral, an approximative solution, which minimizes the "gap" between the given ranking and the one derived from the Choquet integral, is proposed. The problem is solved by quadratic programming. 
 }
 
 \usage{
-ls.sorting.capa.ident(n, k, C, cl, d, A.Shapley.preorder = NULL,
+ls.ranking.capa.ident(n, k, C, rk, d, A.Shapley.preorder = NULL,
 A.Shapley.interval = NULL, A.interaction.preorder = NULL,
 A.interaction.interval = NULL, A.inter.additive.partition = NULL,
 sigf = 5, maxiter = 20, epsilon = 1e-6)
@@ -37,23 +20,21 @@ sigf = 5, maxiter = 20, epsilon = 1e-6)
     \code{Mobius.capacity} is to be defined (in short, the number of criteria).}
  
   \item{k}{Object of class \code{numeric} imposing that the solution is at
-    most a k-additive capacity (the \enc{Möbius}{Mobius} transform of subsets whose cardinal is
+    most a k-additive capacity (the Moebius transform of subsets whose cardinal is
     superior to \code{k} vanishes).}
 
   \item{C}{Object of class \code{matrix} containing the
     \code{n}-column criteria matrix. Each line of this matrix
     corresponds to a prototype.}
 
-  \item{cl}{Object of class \code{numeric} containing the indexes of the
-    classes the alternatives are belonging to (the greater the class
-    index, the better the prototype is considered by the decision
-    maker). Each class index between min(cl) and max(cl) must be present.}
+  \item{rk}{Object of class \code{matrix} containing the
+    constraints relative to the preorder of the prototypes. Each line
+    of this 2-column matrix corresponds to one constraint of the type
+    "the alternative \code{i} is prefered to the alternative \code{j}". A line is structured as follows: the first element
+    encodes \code{i}, the second \code{j}.}
 
-  \item{d}{Object of class \code{numeric} containing the threshold value
-    for the classes, i.e. the minimal "distance" between two neighbor
-    classes (e.g. the difference in terms of the Choquet integral of the
-    worst prototype of class 3 and the best prototype of
-    class 2 should be at least \code{d}).}
+  \item{d}{Object of class \code{numeric} containing the threshold value, i.e. the minimal "distance" between two neighbor alternatives in the given ranking (e.g. the difference in terms of the Choquet integral of the
+    a prototype with rank 3 and a prototype with rank 4 should be at least \code{d}).}
 
   \item{A.Shapley.preorder}{Object of class \code{matrix} containing the
     constraints relative to the preorder of the criteria. Each line
@@ -126,13 +107,17 @@ sigf = 5, maxiter = 20, epsilon = 1e-6)
   The function returns a list structured as follows:
     
   \item{solution}{Object of class
-    \code{Mobius.capacity} containing the \enc{Möbius}{Mobius} transform of the
+    \code{Mobius.capacity} containing the Moebius transform of the
     \code{k}-additive solution.}
   
-  \item{glob.eval}{The global evaluations satisfying the given classification.}
+  \item{glob.eval}{The global evaluations satisfying the given ranking.}
 
   \item{how}{Information returned by \code{ipop} (cf. \pkg{kernlab}) on
     the convergence of the solver.}
+
+	\item{rk.C}{The ranks of the prototypes}
+	\item{Choquet.C}{The Choquet integral of the prototypes}
+
 }
 
 \references{
@@ -156,93 +141,30 @@ sigf = 5, maxiter = 20, epsilon = 1e-6)
   \cr \code{\link{mini.dist.capa.ident}},
   \cr \code{\link{least.squares.capa.ident}},
   \cr \code{\link{heuristic.ls.capa.ident}},
-  \cr \code{\link{ls.sorting.treatment}},
   \cr \code{\link{entropy.capa.ident}}.  
 }
 
 \examples{
 
-## generate a random problem with 10 prototypes and 4 criteria
-n.proto <- 10 ## prototypes
-n <- 4  ## criteria
-k <- 4  
-d <- 0.1
-	
-## generating random data for the prototypes
-C <- matrix(runif(n.proto*n,0,1),n.proto,n)
-cl <- numeric(n.proto)
+arthur <- c(1, 1, 0.75, 0.25)
+lancelot <- c(0.75, 0.75, 0.75, 0.75)
+yvain <- c(1, 0.625, 0.5, 1)
+perceval <- c(0.25, 0.5, 0.75, 0.75)
+erec <- c(0.375, 1, 0.5 , 0.75)
 
-## the corresponding global evaluations
-glob.eval <- numeric(n.proto)
-a <- capacity(c(0:(2^n-3),(2^n-3),(2^n-3))/(2^n-3))
-for (i in 1:n.proto)
-  glob.eval[i] <- Choquet.integral(a,C[i,])
+P <- rbind(arthur, lancelot, yvain, perceval, erec)
 
-## and the classes for the prototypes
-cl[glob.eval <= 0.33] <- 1
-cl[glob.eval > 0.33 & glob.eval <= 0.66] <-2
-cl[glob.eval > 0.66] <- 3
+# lancelot > erec; yvain > erec, erec > perceval, erec > arthur
+rk.proto <- rbind(c(2,5), c(3,5), c(5,4), c(5,1))
 
-cl
+n<-4
+k<-2
+d<-0.1
 
-\dontrun{
-# starting the calculations
-# search for a capacity which satisfies the constraints
-lsc <- ls.sorting.capa.ident(n ,k, C, cl, d)
-
-## output of the quadratic program (ipop, package kernlab)
-lsc$how
-
-## the capacity satisfying the constraints
-lsc$solution
-summary(lsc$solution)
-## the global evaluations satisfying the constraints
-lsc$glob.eval
-}
-
-## let us now add some constraints        
-
-## a Shapley preorder constraint matrix
-## Sh(1) > Sh(2)
-## Sh(3) > Sh(4)
-delta.S <-0.01
-Asp <- rbind(c(1,2,delta.S), c(3,4,delta.S))
-
-## a Shapley interval constraint matrix
-## 0.1 <= Sh(1) <= 0.2 
-Asi <- rbind(c(1,0.1,0.2))
-        
-## an interaction preorder constraint matrix
-## such that I(12) > I(34)
-delta.I <- 0.01
-Aip <- rbind(c(1,2,3,4,delta.I))
-        
-## an interaction interval constraint matrix
-## i.e. 0.2 <= I(12) <= 0.4 
-## and 0 < I(34) <= 1
-Aii <- rbind(c(1,2,0.2,0.4), c(3,4,delta.I,1))
-        
-## an inter-additive partition constraint
-## criteria 1,2 and criteria 3,4 are independent 
-Aiap <- c(1,1,2,2)
-
-
-## starting the calculations
 ## search for a capacity which satisfies the constraints
-lsc <- ls.sorting.capa.ident(n ,k, C, cl, d,
-                                  A.Shapley.preorder = Asp,
-                                  A.Shapley.interval = Asi,
-                                  A.interaction.preorder = Aip,
-                                  A.interaction.interval = Aii,
-                                  A.inter.additive.partition = Aiap)
+lrc <- ls.ranking.capa.ident(n ,k, P, rk.proto, d)
 
-## output of ipop
-lsc$how
-## the capacity satisfying the constraints
-lsc$solution
-summary(lsc$solution)
-## the global evaluations satisfying the constraints
-lsc$glob.eval
+lrc
 
 }
 

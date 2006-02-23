@@ -35,13 +35,14 @@
 #
 ##############################################################################
 
-## Minimum variance capacity identification
+## Capacity identification using the linear programming based approach
+## of Marichal and Roubens
 
 ##############################################################################
 
-## Constructs a Mobius.capacity object by means of a quadratic program 
+## Constructs a Mobius.capacity object by means of a linear program 
 
-mini.var.capa.ident <- function(n, k,
+lin.prog.capa.ident <- function(n, k,
                                       A.Choquet.preorder = NULL,
                                       A.Shapley.preorder = NULL,
                                       A.Shapley.interval = NULL,
@@ -94,7 +95,7 @@ mini.var.capa.ident <- function(n, k,
     if (!(is.positive(epsilon) && epsilon <= 1e-3))
         stop("wrong epsilon value")
 
-    ## number of variables
+    ## number of variables without the slack variable z/Epsilon
     n.var <- binom.sum(n,k) - 1
 
     ## number of monotonicity constraints
@@ -117,19 +118,13 @@ mini.var.capa.ident <- function(n, k,
 
 
     A <- matrix(A,n.con,n.var,byrow=TRUE)
-
-    ## quadratic form
-    D.Shapley <- .C("objective_function_Choquet_coefficients", 
-                    as.integer(n), 
-                    D = double(n.con),
-                    PACKAGE="kappalab")$D		
-
-    Dmat <- t(A) %*% diag(D.Shapley) %*% A
+    A <- cbind(A,rep(0,n.con))
+    ineqvec <- rep(">=",n.con)
 
     ## add the normalization constraint sum a(T) = 1
-    A <- rbind(rep(1,n.var),A)
+    A <- rbind(c(rep(1,n.var),0),A)
+    ineqvec <- c("==",ineqvec)
     bvec <- c(1,rep(epsilon,n.con))
-    meq <- 1
     
     ## add the constraints relative to the preorder of the alternatives
     if (!is.null(A.Choquet.preorder)) {
@@ -141,7 +136,8 @@ mini.var.capa.ident <- function(n, k,
                                                A.Choquet.preorder[i,][(n+1):(2*n)],
                                                A.Choquet.preorder[i,2*n+1])
 
-            A <- rbind(A,cpc$A)
+            A <- rbind(A,c(cpc$A,-1))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,cpc$b)	
         }	
     }
@@ -156,7 +152,8 @@ mini.var.capa.ident <- function(n, k,
                                              A.Shapley.preorder[i,2],
                                              A.Shapley.preorder[i,3])
             
-            A <- rbind(A,spc$A)
+            A <- rbind(A,c(spc$A,-1))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,spc$b)	
         }	
     }
@@ -172,10 +169,12 @@ mini.var.capa.ident <- function(n, k,
                                                A.Shapley.interval[i,3])
 
             ## Sh(i) >= a
-            A <- rbind(A,sic$A)
+            A <- rbind(A,c(sic$A,0))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,sic$b)
             ## - Sh(i) >= -b
-            A <- rbind(A,-sic$A)
+            A <- rbind(A,c(-sic$A,0))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,-(sic$b + sic$r))
             
         }	
@@ -193,7 +192,8 @@ mini.var.capa.ident <- function(n, k,
                                              A.interaction.preorder[i,4],
                                              A.interaction.preorder[i,5])
             
-            A <- rbind(A,ipc$A)
+            A <- rbind(A,c(ipc$A,-1))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,ipc$b)	
         }	
     }
@@ -210,10 +210,12 @@ mini.var.capa.ident <- function(n, k,
                                                    A.interaction.interval[i,4])
 
             ## I(ij) >= a
-            A <- rbind(A,iic$A)
+            A <- rbind(A,c(iic$A,0))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,iic$b)
             ## I(ij) <= b
-            A <- rbind(A,-iic$A)
+            A <- rbind(A,c(-iic$A,0))
+            ineqvec <- c(ineqvec,">=")
             bvec <- c(bvec,-(iic$b+iic$r))
         }	
     }
@@ -225,18 +227,29 @@ mini.var.capa.ident <- function(n, k,
         iapc <- inter.additive.partition.constraint(n,k,subsets,
                                                  A.inter.additive.partition)
 
-        A <- rbind(iapc$A,A)
+        A <- rbind(A,cbind(iapc$A,0))
         bvec <- c(iapc$b,bvec)
-        meq <- meq + length(iapc$b)
+        ineqvec <- c(ineqvec,rep("==",length(iapc$b)))
     }
     
 
-    ## quadprog
-    qp <- solve.QP(2*Dmat,rep(0,n.var),t(A),bvec,meq = meq)
+    ## lower bound of the Mobius transform
+    lower.bound <- .C("Mobius_lower_bound", 
+                      as.integer(n), 
+                      as.integer(k),
+                      as.integer(subsets),
+                      lb = double(n.var),
+                      PACKAGE="kappalab")$lb
 
-    return(list(solution = Mobius.capacity(c(0,qp$solution),n,k),
-                value = qp$value, iterations = qp$iterations,
-                iact = qp$iact))    
+    # change of variable so that the LP be in standard form
+    bvec <- bvec - A %*% c(lower.bound,0)
+    
+    ## lpSolve
+    lp.res <- lp("max",c(rep(0,n.var),1),A,ineqvec,bvec)
+    print(lp.res)
+
+    return(list(solution = Mobius.capacity(c(0,lp.res$solution[1:n.var]+lower.bound),n,k),
+                value = lp.res$objval,lp.object = lp.res))    
     
 } 
 

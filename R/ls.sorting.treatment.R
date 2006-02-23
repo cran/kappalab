@@ -60,7 +60,7 @@ ls.sorting.treatment <- function(P, cl.proto, a, A, cl.orig.A = NULL){
         stop("wrong criteria matrix")
 
      ## check cl.proto
-     if (!(is.vector(cl.orig.A) && length(cl.orig.A) == dim(A)[1]) || is.null(cl.orig.A)) 
+     if (!(is.vector(cl.orig.A) && length(cl.orig.A) == dim(A)[1] || is.null(cl.orig.A)))
         stop("wrong vector of classes")
      
      ## the min and the max of the classes
@@ -201,3 +201,4 @@ ls.sorting.treatment <- function(P, cl.proto, a, A, cl.orig.A = NULL){
                  minmax.P = minmax,
                  Choquet.A = Choquet.A))
 }
+

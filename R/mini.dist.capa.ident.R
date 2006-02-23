@@ -35,13 +35,13 @@
 #
 ##############################################################################
 
-## Minimum variance capacity identification
+## Minimum distance capacity identification
 
 ##############################################################################
 
 ## Constructs a Mobius.capacity object by means of a quadratic program 
 
-mini.var.capa.ident <- function(n, k,
+mini.dist.capa.ident <- function(a, k, distance = "Choquet.coefficients",
                                       A.Choquet.preorder = NULL,
                                       A.Shapley.preorder = NULL,
                                       A.Shapley.interval = NULL,
@@ -50,9 +50,21 @@ mini.var.capa.ident <- function(n, k,
                                       A.inter.additive.partition = NULL,
                                       epsilon = 1e-6) {
 
-    ## check n and k
-    if (!(as.integer(n) == n && k %in% 1:n))
+    
+    ## check a
+    if (!("Mobius.game" %in% is(a)))
+        stop("Object a is not of class Mobius.game")
+    
+    ## number of elements (criteria)
+    n <- a@n
+
+    ## check k 
+    if (!(k %in% 1:n))
         stop("wrong arguments")
+
+    # check distance
+    if (!(distance %in% c("Choquet.coefficients","binary.alternatives","global.scores")))
+        stop("wrong distance type")
 
     ## check A.Choquet.preorder
     if (!((is.matrix(A.Choquet.preorder)
@@ -97,35 +109,102 @@ mini.var.capa.ident <- function(n, k,
     ## number of variables
     n.var <- binom.sum(n,k) - 1
 
+    ## size of the vector representing a
+    s.a <- binom.sum(n,a@k) - 1
+
+    ## 2^n - 1
+    pow.n <- 2^n - 1
+    
     ## number of monotonicity constraints
     n.con <- n*2^(n-1)
 
-    ## k power set in natural order
-    subsets <-  .C("k_power_set", 
+    ## k power set or a@k power set in natural order
+    power.set <-  .C("k_power_set", 
                    as.integer(n),
-                   as.integer(k),
-                   subsets = integer(n.var+1),
+                   as.integer(max(k,a@k)),
+                   subsets = integer(max(n.var+1,s.a+1)),
                    PACKAGE="kappalab")$subsets
 
+    subsets <- power.set[1:(n.var+1)]
+    subsets.a <- power.set[1:(s.a+1)]
+    
     ## monotonicity constraints
-    A <- .C("monotonicity_constraints", 
+    M <- .C("monotonicity_constraints", 
             as.integer(n), 
             as.integer(k),
             as.integer(subsets),
-            A = integer(n.var * n.con),
-            PACKAGE="kappalab")$A
+            M = integer(n.var * n.con),
+            PACKAGE="kappalab")$M
 
 
-    A <- matrix(A,n.con,n.var,byrow=TRUE)
+    M <- matrix(M,n.con,n.var,byrow=TRUE)
 
-    ## quadratic form
-    D.Shapley <- .C("objective_function_Choquet_coefficients", 
-                    as.integer(n), 
-                    D = double(n.con),
-                    PACKAGE="kappalab")$D		
+    ## objective function
+    if (distance == "Choquet.coefficients") {
+        
+        cat("Distance used: Choquet.coefficients \n\n")
+        
+        D.Shapley <- .C("objective_function_Choquet_coefficients", 
+                        as.integer(n), 
+                        D = double(n.con),
+                        PACKAGE="kappalab")$D		
+        
+        Dmat <- t(M) %*% diag(D.Shapley) %*% M
+        
+        ## forming the second part of the objective function (dvec)
+        M.a <- .C("monotonicity_constraints", 
+                  as.integer(n), 
+                  as.integer(a@k),
+                  as.integer(subsets.a),
+                   M = integer(s.a * n.con),
+                  PACKAGE="kappalab")$M
+        
+        M.a <- matrix(M.a,n.con,s.a,byrow=TRUE)
+        
 
-    Dmat <- t(A) %*% diag(D.Shapley) %*% A
+        ## linear part of the objective function
+        dvec <- a@data[-1] %*% t(M.a) %*% diag(D.Shapley) %*% M
+        
+    } else if (distance == "binary.alternatives") {
 
+        cat("Distance used: binary.alternatives \n\n")
+        
+        B <- .C("objective_function_binary_alternatives", 
+                as.integer(n), 
+                as.integer(k),
+                as.integer(subsets),
+                B = integer(n.var * pow.n),
+                PACKAGE="kappalab")$B
+        
+        B <- matrix(B,pow.n,n.var,byrow=TRUE)
+
+        Dmat <- t(B) %*% B
+        
+        dvec <- zeta(a)@data[-1] %*% B 
+        
+    } else { # distance = "global.scores"
+
+        cat("Distance used: global.scores \n\n")
+        
+        Q <- .C("objective_function_global_scores", 
+                as.integer(n), 
+                as.integer(max(a@k,k)),
+                as.integer(k),
+                as.integer(power.set),
+                Q = double(max(s.a,n.var) * n.var),
+                PACKAGE="kappalab")$Q
+        
+        Q <- matrix(Q,max(s.a,n.var),n.var,byrow=TRUE)
+        
+        Dmat <- Q[1:n.var,]
+
+        dvec <- a@data[-1] %*% Q[1:s.a,]
+        
+    }
+
+    ## the constraint matrix
+    A <- M
+    
     ## add the normalization constraint sum a(T) = 1
     A <- rbind(rep(1,n.var),A)
     bvec <- c(1,rep(epsilon,n.con))
@@ -215,7 +294,7 @@ mini.var.capa.ident <- function(n, k,
             ## I(ij) <= b
             A <- rbind(A,-iic$A)
             bvec <- c(bvec,-(iic$b+iic$r))
-        }	
+         }	
     }
 
     ## add the constraints relative to the inter-addtive partition
@@ -230,9 +309,8 @@ mini.var.capa.ident <- function(n, k,
         meq <- meq + length(iapc$b)
     }
     
-
     ## quadprog
-    qp <- solve.QP(2*Dmat,rep(0,n.var),t(A),bvec,meq = meq)
+    qp <- solve.QP(Dmat, dvec , t(A), bvec, meq = meq)
 
     return(list(solution = Mobius.capacity(c(0,qp$solution),n,k),
                 value = qp$value, iterations = qp$iterations,

@@ -82,7 +82,10 @@ ls.sorting.treatment(P, cl.proto, a, A, cl.orig.A = NULL)
 \seealso{
   \code{\link{Mobius.capacity-class}},
   \cr \code{\link{mini.var.capa.ident}},
+  \cr \code{\link{mini.dist.capa.ident}},
   \cr \code{\link{ls.sorting.capa.ident}},
+  \cr \code{\link{least.squares.capa.ident}},
+  \cr \code{\link{heuristic.ls.capa.ident}},
   \cr \code{\link{entropy.capa.ident}}.  
 }
 

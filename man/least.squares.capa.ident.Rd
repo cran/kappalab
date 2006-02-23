@@ -148,7 +148,10 @@ epsilon = 1e-6)
 
 \seealso{
   \code{\link{Mobius.capacity-class}},
+  \cr \code{\link{heuristic.ls.capa.ident}},
+  \cr \code{\link{lin.prog.capa.ident}},
   \cr \code{\link{mini.var.capa.ident}},
+  \cr \code{\link{mini.dist.capa.ident}},
   \cr \code{\link{ls.sorting.capa.ident}},
   \cr \code{\link{entropy.capa.ident}}.  
 }
