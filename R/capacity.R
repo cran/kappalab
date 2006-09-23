@@ -75,11 +75,11 @@ setMethod("zeta", signature(object = "Mobius.capacity"),
           )
 
 ## Constructor from capacity
-## The dual of a capacity is a capacity
-setMethod("dual", signature(object = "capacity"),
+## The conjugate of a capacity is a capacity
+setMethod("conjugate", signature(object = "capacity"),
           function(object, ...) {
               
-              sf <- dual.internal(object)
+              sf <- conjugate.internal(object)
               new("capacity", data = sf$data, subsets = sf$subsets, n = sf$n)
           }
           )

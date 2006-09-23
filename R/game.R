@@ -74,11 +74,11 @@ setMethod("zeta", signature(object = "Mobius.game"),
           )
 
 ## Constructor from set.func
-## The dual of a set function is a game
-setMethod("dual", signature(object = "set.func"),
+## The conjugate of a set function is a game
+setMethod("conjugate", signature(object = "set.func"),
           function(object, ...) {
               
-              sf <- dual.internal(object)
+              sf <- conjugate.internal(object)
               new("game", data = sf$data, subsets = sf$subsets, n = sf$n)
           }
           )
@@ -132,6 +132,32 @@ setMethod("Sipos.integral",signature(object = "game", f = "numeric"),
                  as.integer(object@n), 
                  as.double(object@data), 
                  as.double(f), 
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the c.d.f. of the Choquet integral in the uniform case at y 
+setMethod("cdf.Choquet",signature(object = "game", y = "numeric"),
+          function(object,y,...) {
+      
+              .C("cdf_Choquet", 
+                 as.integer(object@n), 
+                 as.double(object@data), 
+                 as.double(y),  
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the p.d.f. of the Choquet integral in the uniform case at y 
+setMethod("pdf.Choquet",signature(object = "game", y = "numeric"),
+          function(object,y,...) {
+      
+              .C("pdf_Choquet", 
+                 as.integer(object@n), 
+                 as.double(object@data), 
+                 as.double(y),  
                  res = double(1),
                  PACKAGE="kappalab")$res[1]
           }

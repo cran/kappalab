@@ -2,7 +2,7 @@
 \docType{class}
 \alias{card.capacity-class}
 %\alias{as.capacity,card.capacity-method}
-%\alias{dual,card.capacity-method}
+%\alias{conjugate,card.capacity-method}
 %\alias{entropy,card.capacity-method}
 %\alias{favor,card.capacity-method}
 %\alias{is.normalized,card.capacity-method}
@@ -40,7 +40,7 @@ Class \code{superclass.set.func}, by class \code{card.game}.
 \section{Methods}{
   \describe{
     \item{as.capacity}{\code{signature(object = "card.capacity")} }
-    \item{dual}{\code{signature(object = "card.capacity")} }
+    \item{conjugate}{\code{signature(object = "card.capacity")} }
     \item{entropy}{\code{signature(object = "card.capacity")} }
     \item{favor}{\code{signature(object = "card.capacity")} }
     \item{is.normalized}{\code{signature(object = "card.capacity")} } 
@@ -53,7 +53,7 @@ Class \code{superclass.set.func}, by class \code{card.game}.
 
 \seealso{
 	\code{\link{capacity-class}}, \cr \code{\link{card.capacity}},
-  	\cr \code{\link{as.capacity-methods}}, \cr \code{\link{dual-methods}}, 
+  	\cr \code{\link{as.capacity-methods}}, \cr \code{\link{conjugate-methods}}, 
 	\cr \code{\link{entropy-methods}}, \cr \code{\link{favor-methods}}, 
 	\cr \code{\link{is.normalized-methods}}, \cr \code{\link{orness-methods}}, 
 	\cr \code{\link{variance-methods}}, \cr \code{\link{veto-methods}}.
@@ -74,7 +74,7 @@ is.normalized(mu)
 normalize(mu)
 
 ## a transformation
-dual(mu)
+conjugate(mu)
 
 ## some summary indices
 orness(mu)

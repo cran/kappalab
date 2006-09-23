@@ -41,7 +41,10 @@ Class \code{superclass.set.func}, by class \code{set.func}.
     \item{Choquet.integral}{\code{signature(object = "game", f = "numeric")}}
     \item{Mobius}{\code{signature(object = "game")}}
     \item{Sipos.integral}{\code{signature(object = "game", f = "numeric")}}
-    \item{Sugeno.integral}{\code{signature(object = "game", f = "numeric")}}
+    \item{Sugeno.integral}{\code{signature(object = "game", f =
+	"numeric")}}
+    \item{pdf.Choquet}{\code{signature(object = "game", f = "numeric")}}
+    \item{cdf.Choquet}{\code{signature(object = "game", f = "numeric")}}
   }
 }
 
@@ -51,7 +54,9 @@ Class \code{superclass.set.func}, by class \code{set.func}.
   \cr \code{\link{Choquet.integral-methods}}, 
   \cr \code{\link{Mobius-methods}},
   \cr \code{\link{Sipos.integral-methods}}, 
-  \cr \code{\link{Sugeno.integral-methods}}. 
+  \cr \code{\link{Sugeno.integral-methods}},
+  \cr \code{\link{pdf.Choquet-methods}}, 
+  \cr \code{\link{cdf.Choquet-methods}}. 
 }
 
 \examples{

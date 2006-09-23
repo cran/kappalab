@@ -115,8 +115,8 @@ if (!isGeneric("is.normalized")) {
 
 ##############################################################################
 
-if (!isGeneric("dual")) {
-    setGeneric("dual", function(object, ...) standardGeneric("dual"))
+if (!isGeneric("conjugate")) {
+    setGeneric("conjugate", function(object, ...) standardGeneric("conjugate"))
 }
 
 if (!isGeneric("Mobius")) {
@@ -183,6 +183,16 @@ if (!isGeneric("Sugeno.integral")) {
 if (!isGeneric("Sipos.integral")) {
     setGeneric("Sipos.integral", function(object,f, ...)
                standardGeneric("Sipos.integral"))
+}
+
+if (!isGeneric("cdf.Choquet")) {
+    setGeneric("cdf.Choquet", function(object,y, ...)
+               standardGeneric("cdf.Choquet"))
+}
+
+if (!isGeneric("pdf.Choquet")) {
+    setGeneric("pdf.Choquet", function(object,y, ...)
+               standardGeneric("pdf.Choquet"))
 }
 
 ##############################################################################

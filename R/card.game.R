@@ -66,8 +66,8 @@ setMethod("as.card.game", signature(object = "game"),
           )
 
 ## Constructor from card.set.func
-## The dual of a set function is a game
-setMethod("dual", signature(object = "card.set.func"),
+## The conjugate of a set function is a game
+setMethod("conjugate", signature(object = "card.set.func"),
           function(object, ...) {
               
               card.game(object@data[object@n+1] - object@data[(object@n+1):1])

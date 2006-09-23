@@ -66,8 +66,8 @@ setMethod("as.card.capacity", signature(object = "capacity"),
           )
 
 ## Constructor from card.capacity
-## The dual of a capacity is a capacity
-setMethod("dual", signature(object = "card.capacity"),
+## The conjugate of a capacity is a capacity
+setMethod("conjugate", signature(object = "card.capacity"),
           function(object, ...) {
               
               card.capacity(object@data[object@n+1]

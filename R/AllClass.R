@@ -35,14 +35,6 @@
 #
 ##############################################################################
 
-## Ensure that the methods package is available
-.onLoad <- function(lib, pkg) {
-    
-    require("methods", character = TRUE, quietly = TRUE)
-}
-
-###############################################################################
-
 ## virtual class, superclass of all *.set.func classes
 setClass("superclass.set.func",
          representation(data = "numeric", n = "numeric"),

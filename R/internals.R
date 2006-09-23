@@ -132,7 +132,7 @@ as.set.func.internal <- function(object) {
 }
 
 ## Creates a list from a set.func for creation of a set.func object
-dual.internal <- function(object) {
+conjugate.internal <- function(object) {
     
     data <- .C("setfunction2conjugate", 
                as.double(object@data),

@@ -105,7 +105,7 @@ heuristic.ls.capa.ident <- function(n, mu, C, g, Integral="Choquet",maxiter = 50
             residuals[i] <- g[i] - Sipos.integral(mu,C[i,])
     
     ## solution
-    return(list(solution = mu, n.iter = obj$n.iter, residuals = residuals, mse = obj$error, ))
+    return(list(solution = mu, n.iter = obj$n.iter, residuals = residuals, mse = obj$error))
 } 
 
 ##############################################################################

@@ -1,16 +1,16 @@
-\name{dual-methods}
+\name{conjugate-methods}
 \docType{methods}
-\alias{dual}
-\alias{dual-methods}
-\alias{dual,capacity-method}
-\alias{dual,card.capacity-method}
-\alias{dual,card.set.func-method}
-\alias{dual,set.func-method}
+\alias{conjugate}
+\alias{conjugate-methods}
+\alias{conjugate,capacity-method}
+\alias{conjugate,card.capacity-method}
+\alias{conjugate,card.set.func-method}
+\alias{conjugate,set.func-method}
 
-\title{The dual (or conjugate) transform}
+\title{The conjugate (or dual) transform}
 
-\description{Computes the dual (also called the \emph{conjugate}) of a set function. The
-  dual of the dual of a game gives the original game back.}
+\description{Computes the conjugate (also called the \emph{dual}) of a set function. The
+  conjugate of the conjugate of a game gives the original game back.}
 
 \section{Methods}{
 \describe{
@@ -42,29 +42,29 @@
 mu <- game(c(0,-7:7))
 mu
 
-## its dual 
-dual(mu)
+## its conjugate 
+conjugate(mu)
 ## and mu again 
-dual(dual(mu))
+conjugate(conjugate(mu))
 
 ## a similar example with the upper capacity
 mu <- capacity(c(0,rep(1,15)))
 mu
-dual(mu)
-dual(dual(mu))
+conjugate(mu)
+conjugate(conjugate(mu))
 
 ## a similar example with an object of class card.capacity
 mu <- upper.capacity(6)
 mu
-dual(mu)
-dual(dual(mu))
+conjugate(mu)
+conjugate(conjugate(mu))
 
-## the dual of a set function is a game
+## the conjugate of a set function is a game
 mu <- set.func(-7:8)
 mu
-dual(mu)
+conjugate(mu)
 mu <- card.set.func(-2:5)
-dual(mu)
+conjugate(mu)
 }
 
 \keyword{methods}

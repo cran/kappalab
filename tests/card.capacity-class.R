@@ -4,7 +4,7 @@ x <- runif(8)
 for (i in 2:8)
     x[i] <- x[i] + x[i-1]
 mu <- card.capacity(c(0,x))
-stopifnot(abs(dual(dual(mu))@data - mu@data) < 1e-6)
+stopifnot(abs(conjugate(conjugate(mu))@data - mu@data) < 1e-6)
 stopifnot(abs(mu@data - zeta(Mobius(mu))@data) < 1e-6)
 stopifnot(abs(normalize(normalize(mu))@data - normalize(mu)@data) < 1e-6)
 

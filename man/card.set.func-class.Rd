@@ -4,7 +4,7 @@
 %\alias{as.card.capacity,card.set.func-method}
 %\alias{as.card.game,card.set.func-method}
 %\alias{as.set.func,card.set.func-method}
-%\alias{dual,card.set.func-method}
+%\alias{conjugate,card.set.func-method}
 %\alias{interaction.indices,card.set.func-method}
 %\alias{is.cardinal,card.set.func-method}
 %\alias{is.kadditive,card.set.func,numeric-method}
@@ -50,7 +50,7 @@ Class \code{superclass.set.func}, directly.
     
     \item{as.Mobius.set.func}{\code{signature(object = "card.set.func")}}
     
-    \item{dual}{\code{signature(object = "card.set.func")}}
+    \item{conjugate}{\code{signature(object = "card.set.func")}}
     
     \item{interaction.indices}{\code{signature(object =
 	"card.set.func")}}
@@ -79,7 +79,7 @@ Class \code{superclass.set.func}, directly.
   \cr \code{\link{as.set.func-methods}},
   \cr \code{\link{as.Mobius.set.func-methods}},
   \cr \code{\link{as.Mobius.card.set.func-methods}},
-  \cr \code{\link{dual-methods}}, 
+  \cr \code{\link{conjugate-methods}}, 
   \cr \code{\link{interaction.indices-methods}},
   \cr \code{\link{is.cardinal-methods}}, 
   \cr \code{\link{is.kadditive-methods}},
@@ -111,7 +111,7 @@ is.kadditive(mu,2)
 is.monotone(mu)
 
 ## some transformations
-dual(mu)
+conjugate(mu)
 Mobius(mu)
 ## let us check ...
 zeta(Mobius(mu))

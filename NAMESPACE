@@ -1,4 +1,11 @@
-useDynLib(kappalab)
+## Namespace for kappalab
+
+import("methods")
+importFrom("lpSolve", "lp")
+importFrom("quadprog", "solve.QP")
+
+importClassesFrom("kernlab","ipop")
+importMethodsFrom("kernlab", "ipop")
 
 ## Generics and functions defined in this package
 export(
@@ -27,6 +34,44 @@ export(
        "heuristic.ls.capa.ident"
        )
 
+exportMethods(
+              "as.set.func",
+              "as.game",
+              "as.capacity",
+              "as.card.set.func",
+              "as.card.game",
+              "as.card.capacity",
+              "as.Mobius.set.func",
+              "as.Mobius.game",
+              "as.Mobius.capacity",
+              "as.Mobius.card.set.func",
+              "Mobius",
+              "zeta",
+              "conjugate",
+              "k.truncate.Mobius",
+              "normalize",
+              "Shapley.value",
+              "interaction.indices",
+              "show",
+              "summary",
+              "round",
+              "is.cardinal",
+              "is.monotone",
+              "is.kadditive",
+              "is.normalized",
+              "Choquet.integral",
+              "Sugeno.integral",
+              "Sipos.integral",
+              "cdf.Choquet",
+              "pdf.Choquet",
+              "veto",
+              "favor",
+              "orness",
+              "variance",
+              "entropy",
+              "to.data.frame"            
+              )
+
 exportClasses(
               "superclass.set.func",
               "superclass.capacity",
@@ -44,40 +89,4 @@ exportClasses(
               "summary.superclass.capacity"
               )
 
-exportMethods(
-              "as.set.func",
-              "as.game",
-              "as.capacity",
-              "as.card.set.func",
-              "as.card.game",
-              "as.card.capacity",
-              "as.Mobius.set.func",
-              "as.Mobius.game",
-              "as.Mobius.capacity",
-              "as.Mobius.card.set.func",
-              "Mobius",
-              "zeta",
-              "dual",
-              "k.truncate.Mobius",
-              "normalize",
-              "Shapley.value",
-              "interaction.indices",
-              "show",
-              "summary",
-              "round",
-              "is.cardinal",
-              "is.monotone",
-              "is.kadditive",
-              "is.normalized",
-              "Choquet.integral",
-              "Sugeno.integral",
-              "Sipos.integral",
-              "veto",
-              "favor",
-              "orness",
-              "variance",
-              "entropy",
-              "to.data.frame"            
-              )
-
-
+useDynLib("kappalab")

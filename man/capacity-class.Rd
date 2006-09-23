@@ -2,7 +2,7 @@
 \docType{class}
 \alias{capacity-class}
 %\alias{as.card.capacity,capacity-method}
-%\alias{dual,capacity-method}
+%\alias{conjugate,capacity-method}
 %\alias{entropy,capacity-method}
 %\alias{favor,capacity-method}
 %\alias{is.normalized,capacity-method}
@@ -48,7 +48,7 @@ Class \code{superclass.set.func}, by class \code{game}.
 \section{Methods}{
   \describe{
     \item{as.card.capacity}{\code{signature(object = "capacity")}}
-    \item{dual}{\code{signature(object = "capacity")}}
+    \item{conjugate}{\code{signature(object = "capacity")}}
     \item{entropy}{\code{signature(object = "capacity")}}
     \item{favor}{\code{signature(object = "capacity")}}
     \item{is.normalized}{\code{signature(object = "capacity")}}
@@ -64,7 +64,7 @@ Class \code{superclass.set.func}, by class \code{game}.
   \code{\link{capacity}},
   \cr \code{\link{entropy.capa.ident}},
   \cr \code{\link{as.card.capacity-methods}},
-  \cr \code{\link{dual-methods}}, 
+  \cr \code{\link{conjugate-methods}}, 
   \cr \code{\link{entropy-methods}},
   \cr \code{\link{favor-methods}}, 
   \cr \code{\link{is.normalized-methods}},
@@ -92,7 +92,7 @@ normalize(mu)
 ## as.card.capacity(mu)
 
 ## some transformations
-dual(mu)
+conjugate(mu)
 Mobius(mu)
 ## let us check ...
 zeta(Mobius(mu))

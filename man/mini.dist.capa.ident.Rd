@@ -122,8 +122,9 @@ epsilon = 1e-6)
   Applications, M. Grabisch, T. Murofushi, and M. Sugeno Eds, Physica
   Verlag, pages 95-103.
   
-  I. Kojadinovic (2005), \emph{Quadratic objective functions for
-    capacity and bi-capacity identification and approximation}, submitted.
+  I. Kojadinovic (2006), \emph{Quadratic objective functions for
+    capacity and bi-capacity identification and approximation}, A
+  Quarterly Journal of Operations Research (40R), in press.
   
 }
 

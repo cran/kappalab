@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic  
+# Copyright or © or Copr. Michel Grabisch and Ivan Kojadinovic  
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -38,16 +38,15 @@
 
 /*****************************************************************************
 
-  Non-additive measure and integral manipulation routines.
-  C functions source file. Binary coding of sets.
-  Univers X, X={0,1,2,3,...,n-1} with n=32 maximum.
+  Computation of divided differences of the minus function
+  Ivan Kojadinovic, 04/2006
 
 *****************************************************************************/
 
-#ifndef KAPPALAB_LEASTSQUARES_H
-#define KAPPALAB_LEASTSQUARES_H
+#ifndef KAPPALAB_CDFCHOQUET_H
+#define KAPPALAB_CDFCHOQUET_H
 
-void k_additive_objectif(int *n, int *k, int *subset, int *Integral, double *X,
-			 int *nX, double *R, double *xl, double *xu);
+void cdf_Choquet(int *n, double *mu, double *y, double *Fy);
+void pdf_Choquet(int *n, double *mu, double *y, double *py);
 
-#endif /* ! KAPPALAB_LEASTSQUARES_H */
+#endif /* ! KAPPALAB_CDFCHOQUET_H */
