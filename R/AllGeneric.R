@@ -185,16 +185,40 @@ if (!isGeneric("Sipos.integral")) {
                standardGeneric("Sipos.integral"))
 }
 
-if (!isGeneric("cdf.Choquet")) {
-    setGeneric("cdf.Choquet", function(object,y, ...)
-               standardGeneric("cdf.Choquet"))
+if (!isGeneric("cdf.Choquet.unif")) {
+    setGeneric("cdf.Choquet.unif", function(object,y, ...)
+               standardGeneric("cdf.Choquet.unif"))
 }
 
-if (!isGeneric("pdf.Choquet")) {
-    setGeneric("pdf.Choquet", function(object,y, ...)
-               standardGeneric("pdf.Choquet"))
+if (!isGeneric("pdf.Choquet.unif")) {
+    setGeneric("pdf.Choquet.unif", function(object,y, ...)
+               standardGeneric("pdf.Choquet.unif"))
 }
 
+if (!isGeneric("pdf.Choquet.exp")) {
+    setGeneric("pdf.Choquet.exp", function(object,y, ...)
+               standardGeneric("pdf.Choquet.exp"))
+}
+
+if (!isGeneric("expect.Choquet.unif")) {
+    setGeneric("expect.Choquet.unif", function(object, ...)
+               standardGeneric("expect.Choquet.unif"))
+}
+
+if (!isGeneric("sd.Choquet.unif")) {
+    setGeneric("sd.Choquet.unif", function(object, ...)
+               standardGeneric("sd.Choquet.unif"))
+}
+
+if (!isGeneric("expect.Choquet.norm")) {
+    setGeneric("expect.Choquet.norm", function(object, ...)
+               standardGeneric("expect.Choquet.norm"))
+}
+
+if (!isGeneric("sd.Choquet.norm")) {
+    setGeneric("sd.Choquet.norm", function(object, ...)
+               standardGeneric("sd.Choquet.norm"))
+}
 ##############################################################################
 
 if (!isGeneric("veto")) {

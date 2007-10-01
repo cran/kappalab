@@ -117,3 +117,18 @@ setMethod("Sipos.integral",signature(object = "Mobius.game", f = "numeric"),
           )
 
 ##############################################################################
+
+## Computes the expectation of the Choquet integral in the normal case
+setMethod("expect.Choquet.norm",signature(object = "Mobius.game"),
+          function(object,...) {
+      
+              .C("expectation_Choquet_norm_Mobius", 
+                 as.integer(object@n), 
+                 as.integer(object@k),
+                 as.double(object@data),
+                 as.integer(object@subsets),  
+                 res = double(1),
+                 PACKAGE="kappalab")$res
+              
+          }
+          )

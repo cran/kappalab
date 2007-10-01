@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic    
+# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic    
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -138,10 +138,10 @@ setMethod("Sipos.integral",signature(object = "game", f = "numeric"),
           )
 
 ## Computes the c.d.f. of the Choquet integral in the uniform case at y 
-setMethod("cdf.Choquet",signature(object = "game", y = "numeric"),
+setMethod("cdf.Choquet.unif",signature(object = "game", y = "numeric"),
           function(object,y,...) {
       
-              .C("cdf_Choquet", 
+              .C("cdf_Choquet_unif", 
                  as.integer(object@n), 
                  as.double(object@data), 
                  as.double(y),  
@@ -151,10 +151,10 @@ setMethod("cdf.Choquet",signature(object = "game", y = "numeric"),
           )
 
 ## Computes the p.d.f. of the Choquet integral in the uniform case at y 
-setMethod("pdf.Choquet",signature(object = "game", y = "numeric"),
+setMethod("pdf.Choquet.unif",signature(object = "game", y = "numeric"),
           function(object,y,...) {
       
-              .C("pdf_Choquet", 
+              .C("pdf_Choquet_unif", 
                  as.integer(object@n), 
                  as.double(object@data), 
                  as.double(y),  
@@ -163,4 +163,64 @@ setMethod("pdf.Choquet",signature(object = "game", y = "numeric"),
           }
           )
 
+## Computes the p.d.f. of the Choquet integral in the exponential case at y 
+setMethod("pdf.Choquet.exp",signature(object = "game", y = "numeric"),
+          function(object,y,...) {
+      
+              .C("pdf_Choquet_exp", 
+                 as.integer(object@n), 
+                 as.double(object@data), 
+                 as.double(y),  
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the expectation of the Choquet integral in the uniform case
+setMethod("expect.Choquet.unif",signature(object = "game"),
+          function(object,...) {
+      
+              .C("expectation_Choquet_unif", 
+                 as.integer(object@n), 
+                 as.double(object@data),   
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the variance of the Choquet integral in the uniform case
+setMethod("sd.Choquet.unif",signature(object = "game"),
+          function(object,...) {
+      
+              .C("sd_Choquet_unif", 
+                 as.integer(object@n), 
+                 as.double(object@data),   
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the expectation of the Choquet integral in the normal case
+setMethod("expect.Choquet.norm",signature(object = "game"),
+          function(object,...) {
+      
+              .C("expectation_Choquet_norm_game", 
+                 as.integer(object@n), 
+                 as.double(object@data),   
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
+
+## Computes the variance of the Choquet integral in the normal case
+setMethod("sd.Choquet.norm",signature(object = "game"),
+          function(object,...) {
+      
+              .C("sd_Choquet_norm", 
+                 as.integer(object@n), 
+                 as.double(object@data),   
+                 res = double(1),
+                 PACKAGE="kappalab")$res[1]
+          }
+          )
 ##############################################################################

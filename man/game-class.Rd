@@ -43,8 +43,12 @@ Class \code{superclass.set.func}, by class \code{set.func}.
     \item{Sipos.integral}{\code{signature(object = "game", f = "numeric")}}
     \item{Sugeno.integral}{\code{signature(object = "game", f =
 	"numeric")}}
-    \item{pdf.Choquet}{\code{signature(object = "game", f = "numeric")}}
-    \item{cdf.Choquet}{\code{signature(object = "game", f = "numeric")}}
+    \item{pdf.Choquet.unif}{\code{signature(object = "game", f = "numeric")}}
+    \item{cdf.Choquet.unif}{\code{signature(object = "game", f = "numeric")}}
+    \item{expect.Choquet.unif}{\code{signature(object = "game")}}
+    \item{sd.Choquet.unif}{\code{signature(object = "game")}}
+    \item{expect.Choquet.norm}{\code{signature(object = "game")}}
+    \item{sd.Choquet.norm}{\code{signature(object = "game")}}
   }
 }
 
@@ -55,8 +59,12 @@ Class \code{superclass.set.func}, by class \code{set.func}.
   \cr \code{\link{Mobius-methods}},
   \cr \code{\link{Sipos.integral-methods}}, 
   \cr \code{\link{Sugeno.integral-methods}},
-  \cr \code{\link{pdf.Choquet-methods}}, 
-  \cr \code{\link{cdf.Choquet-methods}}. 
+  \cr \code{\link{pdf.Choquet.unif-methods}}, 
+  \cr \code{\link{cdf.Choquet.unif-methods}},
+  \cr \code{\link{expect.Choquet.unif-methods}}, 
+  \cr \code{\link{sd.Choquet.unif-methods}},
+  \cr \code{\link{expect.Choquet.norm-methods}}, 
+  \cr \code{\link{sd.Choquet.norm-methods}}. 
 }
 
 \examples{

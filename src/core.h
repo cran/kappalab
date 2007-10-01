@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic   
+# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -90,6 +90,7 @@ double binom(int n, int k);
 double sum_binom(int n, int k);
 double gamm(int a, int n);
 double zeta(int a, int n);
+void lex_permut(int n, int p, int *x, int *res);
 
 void fast_lower_cardinality_transform(double *mu, double c, int n);
 

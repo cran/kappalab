@@ -62,7 +62,8 @@ Class \code{superclass.set.func}, by class \code{Mobius.set.func}.
   \cr \code{\link{Choquet.integral-methods}},
   \cr \code{\link{Sipos.integral-methods}}, 
   \cr \code{\link{Sugeno.integral-methods}},
-  \cr \code{\link{zeta-methods}}.
+  \cr \code{\link{zeta-methods}},
+  \cr \code{\link{expect.Choquet.norm-methods}}.
 }
 
 \examples{

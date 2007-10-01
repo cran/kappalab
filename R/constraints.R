@@ -103,8 +103,8 @@ interaction.preorder.constraint <- function(n, k, subsets, i1, i2,
                                                      j1, j2, c) {
     
     if (!(i1 %in% 1:n && i2 %in% 1:n && j1 %in% 1:n && j2 %in% 1:n
-          && i1 != i2 && i1 != j1 && i1 != j2 && i2 != j1
-          && i2 != j2 && j1 != j2 && length(c) == 1))
+          && i1 != i2 && (i1 != j1 || i1 != j2 || i2 != j1
+          || i2 != j2) && j1 != j2 && length(c) == 1))
         stop("wrong interaction preorder constraint matrix")	
 
     A <- .C("interaction_preorder_constraint", 

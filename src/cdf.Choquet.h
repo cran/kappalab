@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright or © or Copr. Michel Grabisch and Ivan Kojadinovic  
+# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic  
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -46,7 +46,8 @@
 #ifndef KAPPALAB_CDFCHOQUET_H
 #define KAPPALAB_CDFCHOQUET_H
 
-void cdf_Choquet(int *n, double *mu, double *y, double *Fy);
-void pdf_Choquet(int *n, double *mu, double *y, double *py);
+void cdf_Choquet_unif(int *n, double *mu, double *y, double *Fy);
+void pdf_Choquet_unif(int *n, double *mu, double *y, double *py);
+void pdf_Choquet_exp(int *n, double *mu, double *y, double *py);
 
 #endif /* ! KAPPALAB_CDFCHOQUET_H */

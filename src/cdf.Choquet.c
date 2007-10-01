@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic   
+# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic 
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -47,6 +47,7 @@
 *****************************************************************************/
 
 #include <R.h>
+#include <Rmath.h>
 #include "core.h"
 
 /*****************************************************************************
@@ -142,38 +143,11 @@ double div_diff_xn_1_y_plus(int n, double *a, double y) {
 
 /*****************************************************************************
 
-  p-th lexicographic permutation
-
-*****************************************************************************/
-
-void lex_permut(int n, int p, int *x, int *res) {
-
-  int i,j,k,q,l,ifact;
-  for (i=n-1;i>=0;i--) {
-    ifact = (int)fact(i);
-    p = p % ((i+1)*ifact);
-    q = (int)(p / ifact);
-    k = x[q];
-    
-    for (j=0;j<=i;j++)
-      if (x[j] == k) {
-	l = j;
-	break;
-      }
-    for (j=l;j<i;j++)
-      x[j] = x[j+1];
-    
-    res[n-1-i]=k;
-  }
-}
-
-/*****************************************************************************
-
   c.d.f. of the Choquet integral in the uniform case
 
 *****************************************************************************/
 
-void cdf_Choquet(int *n, double *mu, double *y, double *Fy) {
+void cdf_Choquet_unif(int *n, double *mu, double *y, double *Fy) {
 
   int i,j;
   double f = fact(*n), cdf = 0.0;
@@ -205,7 +179,7 @@ void cdf_Choquet(int *n, double *mu, double *y, double *Fy) {
 
 *****************************************************************************/
 
-void pdf_Choquet(int *n, double *mu, double *y, double *py) {
+void pdf_Choquet_unif(int *n, double *mu, double *y, double *py) {
 
   int i,j;
   double f = fact(*n), pdf = 0.0;
@@ -232,5 +206,51 @@ void pdf_Choquet(int *n, double *mu, double *y, double *py) {
   *py = pdf * (double)(*n) / f;
 }
 
+/*****************************************************************************
+
+  p.d.f. of the Choquet integral in the exponential case
+
+*****************************************************************************/
+
+void pdf_Choquet_exp(int *n, double *mu, double *y, double *py) {
+
+  int i,j,k;
+  double f = fact(*n), pdf = 0.0, w;
+  int *id = (int *)R_alloc(*n,sizeof(int));
+  int *sigma = (int *)R_alloc(*n,sizeof(int));
+  double *a = (double *)R_alloc(*n+1,sizeof(double));
+
+
+  for (i=0;i<f;i++) {
+ 
+    for (j=0;j<*n;j++)
+      id[j]=j;
+
+    lex_permut(*n, i, id, sigma);
+
+    a[0] = mu[(1<<*n) - 1];
+    for(j=1; j<*n; j++)
+      a[j] = mu[subset2binary(sigma + j, *n - j)];
+    a[*n] = 0.0; 
+
+    for(j=0; j<*n; j++) {
+      
+      w = 1.0;
+      for(k=0;k<*n;k++)
+	if (k != j)
+	    w *= a[j]/(double)(*n-j) - a[k]/(double)(*n-k);
+
+      w = R_pow(a[j]/(double)(*n-j),(double)(*n-2))/w;
+      
+      pdf += w * exp(-(*y) * (double)(*n-j)/a[j]);
+      
+    }
+  }
+
+  *py = pdf / f;
+}
+
 
 /*****************************************************************************/
+
+

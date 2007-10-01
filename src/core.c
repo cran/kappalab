@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic 
+# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -63,11 +63,9 @@
 
 int subset2binary(int *x, int nx) {
 
-  int i;
-  int b;
+  int i, b;
 
   b=0;
-
   for(i=0; i<nx; i++)
     b += 1 << x[i];
 
@@ -127,7 +125,6 @@ void binary2subsetR(int *n, int *b, int *x, int *l) {
    iv: indices of the sorted elements (out)
 
 *****************************************************************************/
-   
 
 void tri(register int n, register int *tourn, register double *vec, 
 	 register int *iv) {
@@ -646,15 +643,15 @@ void power_set_binary_char(int *n, char **power_set) {
 
 *****************************************************************************/
 
-void Rprint_setfunction(int *n, int *k, double *mu, int *subset, int *mobius)
-{
+void Rprint_setfunction(int *n, int *k, double *mu, int *subset, int *mobius) {
+
   int	i,j;
   int	x[NMAX];
 
   Rprintf("{}\t\t%lf\n",mu[0]);
 
-  for(i=1; i<sum_binom(*n,*k); i++)
-    {
+  for(i=1; i<sum_binom(*n,*k); i++) {
+
       for(j=0; j<*n; j++) 
 	x[j]=0;
       binary2subset(*n,subset[i],x);
@@ -1038,6 +1035,32 @@ double sum_binom(int n, int k) {
   return s;
 }
 
+/*****************************************************************************
+
+  p-th lexicographic permutation
+
+*****************************************************************************/
+
+void lex_permut(int n, int p, int *x, int *res) {
+
+  int i,j,k,q,l,ifact;
+  for (i=n-1;i>=0;i--) {
+    ifact = (int)fact(i);
+    p = p % ((i+1)*ifact);
+    q = (int)(p / ifact);
+    k = x[q];
+    
+    for (j=0;j<=i;j++)
+      if (x[j] == k) {
+	l = j;
+	break;
+      }
+    for (j=l;j<i;j++)
+      x[j] = x[j+1];
+    
+    res[n-1-i]=k;
+  }
+}
 
 /*****************************************************************************
 

@@ -36,82 +36,22 @@
 ##############################################################################
 */
 
-
 /*****************************************************************************
 
-  Minimum distance capacity identification
-  Ivan Kojadinovic, 11/2005
+  Computation of the (approximate) moments of the Choquet integral 
+  
+  Ivan Kojadinovic, 02/2007
 
 *****************************************************************************/
 
-#include <R.h>
-#include "core.h"
-#include "min.dist.h"
+#ifndef KAPPALAB_MOMENTSCHOQUET_H
+#define KAPPALAB_MOMENTSCHOQUET_H
 
+void expectation_Choquet_unif(int *n, double *mu, double *E);
+void sd_Choquet_unif(int *n, double *mu, double *V);
 
-/*****************************************************************************
+void expectation_Choquet_norm_game(int *n, double *mu, double *E);
+void expectation_Choquet_norm_Mobius(int *n, int *k, double *a, int *subset, double *E);
+void sd_Choquet_norm_game(int *n, double *mu, double *V);
 
-  Diagonal matrix partially defining the objective function for distance d2
-
-*****************************************************************************/
-
-void objective_function_Choquet_coefficients(int *n, double *D) {
-
-  int i, j, m;
-  int pow = 1<<*n;
-
-  m = 0;
-  for (i=0; i<*n; i++)
-    for (j=0; j<pow; j++)
-      if(j & 1<<i)
-	D[m++] = gamm(cardinal(j)-1, *n);
-      
-}
-
-/*****************************************************************************
-
-  Matrix B partially defining the objective function for distance d1
-
-*****************************************************************************/
-
-void objective_function_binary_alternatives(int *n, int *k, int *subset, int *B) {
-
-  int i, j, m;
-  int sb = (int)sum_binom(*n,*k);
-
-  m = 0; 
-  for (i=1; i<(1<<*n); i++) 
-    for (j=1; j<sb; j++) {
-
-      if ((subset[j] & i) == subset[j])
-	B[m++] = 1;
-      else
-	B[m++] = 0;
-      /*if (subset[j] == i)
-	break;*/
-    }
-}
-
-/*****************************************************************************
-
-  Matrix Q partially defining the objective function for distance d3
-
-*****************************************************************************/
-
-void objective_function_global_scores(int *n, int *k1, int*k2, int *subset, double *Q) {
-
-  int i, j, m;
-  double s;
-  int sb1 = (int)sum_binom(*n,*k1);
-  int sb2 = (int)sum_binom(*n,*k2);
-
-  m = 0; 
-  for (i=1; i<sb1; i++) {
-    s = 1.0/(double)(cardinal(subset[i])+1);
-    for (j=1; j<sb2; j++) 
-      Q[m++] = (s + 1.0/ (double)(cardinal(subset[j])+1)) / (double)(cardinal(subset[i] | subset[j])+2);
-    
-  }
-}
-
-/*****************************************************************************/
+#endif /* ! KAPPALAB_MOMENTSCHOQUET_H */
