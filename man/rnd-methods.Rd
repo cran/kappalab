@@ -1,7 +1,8 @@
-\name{round-methods}
+\name{rnd-methods}
 \docType{methods}
-\alias{round-methods}
-\alias{round,superclass.set.func-method}
+\alias{rnd}
+\alias{rnd-methods}
+\alias{rnd,superclass.set.func-method}
 
 \title{Rounding of set function coefficients}
 
@@ -20,17 +21,17 @@
 ## a capacity
 mu <- capacity(0:15/15)
 mu
-round(mu,2)
+rnd(mu,2)
 
 ## a similar example with a Mobius.capacity object
 a <- Mobius(mu)
 a
-round(a,1)
+rnd(a,1)
 
 ## a similar example with a card.capacity object
 mu <- uniform.capacity(6)
 mu
-round(mu)
+rnd(mu)
 }
 \keyword{methods}
 

@@ -43,7 +43,7 @@
 ## a capacity
 mu <- capacity(c(0,0,0:13))
 
-## its Möbius transform
+## its Mobius transform
 a <- Mobius(mu)
 
 ## their normalized entropy

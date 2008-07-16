@@ -162,8 +162,10 @@ ls.ranking.capa.ident <- function(n, k, C, rk, d,
 
 	for (i in 1:dim(rk)[1]){
 		proto.constraint <- numeric(n.var.alt)
-		proto.constraint[rk[i,2]]=-1
-		proto.constraint[rk[i,1]] = 1
+		
+
+		proto.constraint[which(rownames(C)==rk[i,2])]=-1
+		proto.constraint[which(rownames(C)==rk[i,1])] = 1
 		A <- rbind(A, c(numeric(n.var.a), proto.constraint))
 		b <- c(b, d)
 		r <- c(r, infty - (-infty) - d)
@@ -284,7 +286,11 @@ ls.ranking.capa.ident <- function(n, k, C, rk, d,
 	for (i in 1:(dim(C)[1]))
 		Choquet.C[i] <- Choquet.integral(Mobius.capacity(c(0,qp@primal[1:n.var.a]),n,k),C[i,])
 
-	rk.C <- rank(round(Choquet.C,4), ties.method="min")
+	rk.C <- as.matrix(rank(round(Choquet.C,4), ties.method="min"))
+
+	rownames(rk.C) <- rownames(C)
+
+	colnames(rk.C) <- "rank"
 
 	return(list(solution = Mobius.capacity(c(0,qp@primal[1:n.var.a]),n,k),
 		glob.eval = qp@primal[(n.var.a+1):(n.var.a+n.var.alt)],

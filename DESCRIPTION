@@ -1,6 +1,6 @@
 Package: kappalab
-Version: 0.4-1
-Date: 2007-12-07
+Version: 0.4-3
+Date: 2008-07-16
 Title: Non-additive measure and integral manipulation functions
 Author: Michel Grabisch, Ivan Kojadinovic, Patrick Meyer.  
 Maintainer: Ivan Kojadinovic <ivan@stat.auckland.ac.nz>
@@ -9,4 +9,4 @@ Depends: R(>= 2.1.0), methods, lpSolve, quadprog, kernlab
 Encoding: latin1
 License: CeCILL
 URL: http://www.stat.auckland.ac.nz/~ivan/kappalab
-Packaged: Fri Dec  7 10:09:14 2007; ivan
+Packaged: Wed Jul 16 09:46:07 2008; ivan

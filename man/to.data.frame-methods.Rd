@@ -26,7 +26,7 @@
 }}
 
 \examples{
-## the Möbius representation of set function
+## the Mobius representation of set function
 a <- Mobius.set.func(-1:-16,4,4)
 
 ## to data.frame

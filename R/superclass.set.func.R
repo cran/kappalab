@@ -50,7 +50,7 @@ setMethod("show", signature(object = "superclass.set.func"),
 ##############################################################################
 
 ## Round method for object superclass.set.func
-setMethod("round", signature(x = "superclass.set.func"),	
+setMethod("rnd", signature(x = "superclass.set.func"),	
           function(x, digits = 0) {
 
               x@data <- round(x@data,digits)

@@ -146,9 +146,9 @@ if (!isGeneric("to.data.frame")) {
 
 ##############################################################################
 
-if (!isGeneric("round")) {
-    setGeneric("round", function(x, digits = 0)
-               standardGeneric("round"))
+if (!isGeneric("rnd")) {
+    setGeneric("rnd", function(x, digits = 0)
+               standardGeneric("rnd"))
 }
 
 if (!isGeneric("summary")) {

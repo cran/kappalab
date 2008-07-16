@@ -69,7 +69,7 @@ mu <- set.func(c(0,1,1,1,2,2,2,3))
 mu
 is.monotone(mu)
 
-## the Möbius representation of a monotone set function
+## the Mobius representation of a monotone set function
 a <- Mobius.set.func(c(0,1,2,1,3,1,2,1,2,3,1),4,2)
 is.monotone(a)
 

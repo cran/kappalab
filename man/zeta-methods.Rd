@@ -56,7 +56,7 @@
 }
 
 \examples{
-## the Möbius transform of a capacity
+## the Mobius transform of a capacity
 a <- Mobius.capacity(c(rep(0,15),1),4,4)
 a
 

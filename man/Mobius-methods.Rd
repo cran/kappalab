@@ -56,7 +56,7 @@
 mu <- capacity(0:15)
 mu
 
-## its Möbius transform
+## its Mobius transform
 a <- Mobius(mu)
 a
 

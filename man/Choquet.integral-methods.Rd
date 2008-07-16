@@ -69,7 +69,7 @@
 ## a normalized capacity
 mu <- capacity(c(0:13/13,1,1))
 
-## and its Möbius transform
+## and its Mobius transform
 a <- Mobius(mu)
 
 ## a discrete positive function f

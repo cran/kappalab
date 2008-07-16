@@ -54,7 +54,7 @@ exportMethods(
               "interaction.indices",
               "show",
               "summary",
-              "round",
+              "rnd",
               "is.cardinal",
               "is.monotone",
               "is.kadditive",

@@ -59,7 +59,7 @@ mu
 is.kadditive(mu,2)
 is.kadditive(mu,1)
 
-## the Möbius representation of a set function, 2-additive by construction 
+## the Mobius representation of a set function, 2-additive by construction 
 a <- Mobius.set.func(c(0,1,2,1,3,1,2,1,2,3,1),4,2)
 is.kadditive(a,2)
 is.kadditive(a,1)

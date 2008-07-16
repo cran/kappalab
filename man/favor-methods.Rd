@@ -45,7 +45,7 @@
 ## a capacity
 mu <- capacity(c(0:13,13,13))
 
-## its Möbius transform
+## its Mobius transform
 a <- Mobius(mu)
 
 ## their favor indices

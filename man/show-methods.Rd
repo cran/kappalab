@@ -50,7 +50,7 @@ show(mu)
 ## the same
 mu
 
-## a Möbius transform
+## a Mobius transform
 a <- Mobius.set.func(0:10,4,2)
 show(a)
 a

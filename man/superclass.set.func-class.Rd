@@ -24,14 +24,14 @@
 \section{Methods}{
   \describe{
     \item{show}{\code{signature(object = "superclass.set.func")} }
-    \item{round}{\code{signature(x = "superclass.set.func", digits = "numeric")} }
+    \item{rnd}{\code{signature(x = "superclass.set.func", digits = "numeric")} }
     \item{summary}{\code{signature(object = "superclass.set.func")} }
   }
 }
 
 \seealso{
   \code{\link{show-methods}},
-  \cr \code{\link{round-methods}},
+  \cr \code{\link{rnd-methods}},
   \cr \code{\link{summary-methods}}, 
   \cr \code{\link{set.func-class}},
   \cr \code{\link{Mobius.set.func-class}}, 
@@ -53,7 +53,7 @@ mu2
 mu3
 
 ## round mu2
-round(mu2,2)
+rnd(mu2,2)
 
 ## compute indices to summarize them
 summary(mu1)

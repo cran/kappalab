@@ -155,7 +155,7 @@ erec <- c(0.375, 1, 0.5 , 0.75)
 P <- rbind(arthur, lancelot, yvain, perceval, erec)
 
 # lancelot > erec; yvain > erec, erec > perceval, erec > arthur
-rk.proto <- rbind(c(2,5), c(3,5), c(5,4), c(5,1))
+rk.proto <- rbind(c("lancelot","erec"), c("yvain","erec"), c("erec","perceval"), c("erec","arthur"))
 
 n<-4
 k<-2

@@ -577,6 +577,8 @@ void k_power_set(int *n, int *k, int *power_set) {
 
 *****************************************************************************/
 
+#define SET_MAX 4
+
 void k_power_set_char(int *n, int *k, int *k_power_set, char **subset) {
 
   int i, j;
@@ -591,6 +593,8 @@ void k_power_set_char(int *n, int *k, int *k_power_set, char **subset) {
       x[j]=0;
 
     binary2subset(*n,k_power_set[i],x);
+
+    subset[i] = (char *) R_alloc(SET_MAX * (*n), sizeof(char));
       
     sprintf(subset[i],"{%d",x[0]+1);
 

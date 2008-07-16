@@ -35,7 +35,7 @@ mu <- capacity(0:15)
 is.normalized(mu)
 normalize(mu)
 
-## its Möbius transform
+## its Mobius transform
 a <- Mobius(mu)
 is.normalized(a)
 normalize(a)

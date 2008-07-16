@@ -79,7 +79,7 @@ Class \code{superclass.set.func}, by class \code{Mobius.game}.
 \examples{
 ## a capacity
 mu <- capacity(c(0,0,0:13))
-## and its Möbius representation
+## and its Mobius representation
 a <- Mobius(mu)
 a
 

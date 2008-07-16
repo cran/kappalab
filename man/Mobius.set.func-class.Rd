@@ -111,7 +111,7 @@
 }
 
 \examples{
-## the Möbius transform of a set function directly
+## the Mobius transform of a set function directly
 a <- Mobius.set.func(1:16,4,4)
 
 ## the attributes of the object
@@ -122,7 +122,7 @@ a@subsets
 
 ## a set function
 mu <- set.func(7:-8)
-## and its Möbius transform
+## and its Mobius transform
 a <- Mobius(mu)
 
 ## some conversions that cannot work
@@ -145,7 +145,7 @@ interaction.indices(a)
 # the same
 summary(a)
 
-## save the Möbius transform to a file
+## save the Mobius transform to a file
 d <- to.data.frame(a)
 write.table(d,"my.Mobius.set.func.csv",sep="\t")
 

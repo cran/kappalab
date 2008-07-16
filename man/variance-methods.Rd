@@ -37,7 +37,7 @@
 ## a capacity
 mu <- capacity(c(0,0,0,0:12)/12)
 
-## its Möbius transform
+## its Mobius transform
 a <- Mobius(mu)
 
 ## their normalized variance

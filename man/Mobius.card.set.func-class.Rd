@@ -59,7 +59,7 @@
   \cr \code{\link{to.data.frame-methods}}.
 }
 \examples{
-## the Möbius representation of a cardinal set function
+## the Mobius representation of a cardinal set function
 a <- Mobius.card.set.func(-3:2)
 
 # the attributes of the object
