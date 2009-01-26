@@ -90,7 +90,7 @@ setMethod("as.Mobius.set.func", signature(object = "set.func"),
               mu <- .C("binary2natural", 
                        as.integer(object@n),
                        as.double(object@data),
-                       as.integer(subsets),
+                       as.integer(object@subsets),
                        mu = double(2^object@n), 
                        PACKAGE="kappalab")$mu
 
