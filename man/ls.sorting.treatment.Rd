@@ -38,9 +38,6 @@ ls.sorting.treatment(P, cl.proto, a, A, cl.orig.A = NULL)
     containing the "true" classes of the alternatives of \code{A}. This
     can be used for the evaluation of the quality of the model.}
 }
-
-\details{
- }
  
 \value{
   The function returns a list structured as follows:
