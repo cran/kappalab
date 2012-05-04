@@ -584,7 +584,9 @@ void k_power_set_char(int *n, int *k, int *k_power_set, char **subset) {
   int i, j;
   int x[NMAX];
   char string[255];
-  
+
+  subset[0] = (char *) R_alloc(3, sizeof(char));
+
   sprintf(subset[0],"{}");
 
   for(i=1; i<sum_binom(*n,*k); i++) {
@@ -620,6 +622,8 @@ void power_set_binary_char(int *n, char **power_set) {
   int x[NMAX];
   char string[255];
 
+  power_set[0] = (char *) R_alloc(3, sizeof(char));
+
   sprintf(power_set[0],"{}");
 
   for(i=1; i<(1<<*n); i++) {
@@ -629,6 +633,8 @@ void power_set_binary_char(int *n, char **power_set) {
 
     binary2subset(*n,i,x);
       
+    power_set[i] = (char *) R_alloc(SET_MAX * (*n), sizeof(char));
+
     sprintf(power_set[i],"{%d",x[0]+1);
 
     for(j=1; j<cardinal(i); j++) {

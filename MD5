@@ -1,5 +1,5 @@
 ac32110840d0cee016e68857b22d040c *COPYING
-d19411f3cdb7a5b147dd146cb4345ef4 *DESCRIPTION
+16c40df105d0be2a84e7913daa95bde7 *DESCRIPTION
 d8408b0b9f28bf8847f8b6ab595d4ad5 *NAMESPACE
 f357b6c7ffd345f26fbcacb2d18c7480 *R/AllClass.R
 82c022192f42ec6c86a21b9aa39d4662 *R/AllGeneric.R
@@ -95,7 +95,7 @@ fda6991d2daad302218bfdc8228484c5 *man/superclass.capacity-class.Rd
 f6acebdcaa36060d2c9ce11fe314fff7 *src/cdf.Choquet.h
 f02bcac67abec1f900ebce98471c02c2 *src/constraints.c
 281fc34f61a84421dbea7e291183abd4 *src/constraints.h
-26388e1383bdd44468a40cdf62cb4f02 *src/core.c
+522ae3e3e503fbdb774998e3a16b2f74 *src/core.c
 72e72972fba68401e07422296cfc5a46 *src/core.h
 2878d3609a61648ae5f837e012cdb197 *src/heuristic.ls.c
 17c28c679a4857078c3619a5d4a71125 *src/least.squares.c

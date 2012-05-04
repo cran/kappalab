@@ -1,6 +1,6 @@
 Package: kappalab
-Version: 0.4-5
-Date: 2012-02-26
+Version: 0.4-6
+Date: 2012-05-04
 Title: Non-additive measure and integral manipulation functions
 Author: Michel Grabisch, Ivan Kojadinovic, Patrick Meyer.
 Maintainer: Ivan Kojadinovic <ivan.kojadinovic@univ-pau.fr>
@@ -27,6 +27,6 @@ Description: Kappalab, which stands for "laboratory for capacities", is
 Depends: R(>= 2.1.0), methods, lpSolve, quadprog, kernlab
 Encoding: latin1
 License: CeCILL
-Packaged: 2012-02-29 10:37:39 UTC; ikojadin
+Packaged: 2012-05-04 08:55:53 UTC; ikojadin
 Repository: CRAN
-Date/Publication: 2012-02-29 13:06:27
+Date/Publication: 2012-05-04 09:37:47
