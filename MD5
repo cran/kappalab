@@ -1,5 +1,5 @@
 ac32110840d0cee016e68857b22d040c *COPYING
-16c40df105d0be2a84e7913daa95bde7 *DESCRIPTION
+68484af21786aa1d1a7047d37cbf95d1 *DESCRIPTION
 d8408b0b9f28bf8847f8b6ab595d4ad5 *NAMESPACE
 f357b6c7ffd345f26fbcacb2d18c7480 *R/AllClass.R
 82c022192f42ec6c86a21b9aa39d4662 *R/AllGeneric.R
@@ -10,7 +10,7 @@ a4ae9674c960379f40f09c7008408270 *R/Mobius.set.func.R
 59739553c9f45a346a7b3b57151a01bf *R/capacity.R
 c3021703fea1a23df874ed3796a7089a *R/card.capacity.R
 edf85095c1785ea200d8f46282fdd578 *R/card.game.R
-747600bec33c66053e177f44c3edbf7f *R/card.set.func.R
+06a5760317c4e51ef87d3a8bdd2bbb5c *R/card.set.func.R
 0fbbbab0b6ab87e695046e0acb2a5539 *R/constraints.R
 acde7d03e3be9cb27257b3269431bff7 *R/entropy.capa.ident.R
 9cda9a802eb101c4ab5af7d20dbf6e21 *R/game.R
@@ -26,7 +26,6 @@ fa2beb8cddd7cf09cd8f983c5f30ed15 *R/internals.R
 cafca8af181a60c17940a11100466ceb *R/set.func.R
 cd787a3c940394bae0118523b81f954c *R/superclass.capacity.R
 eb7c6a87c6a0fab096eb5c9ae8401017 *R/superclass.set.func.R
-504f475ec4837a6b040e3a82bb13f2ee *kappalab-Ex.R
 14c6075992e6f37f1d2cd2a3a2f9f764 *man/Choquet.integral-methods.Rd
 b14c8c4f4a5dc7740a98708610f8d507 *man/Mobius-methods.Rd
 b8c44cd4aabc08edbb6a450c79552b64 *man/Mobius.capacity-class.Rd
@@ -71,7 +70,7 @@ a6bd0ad6aa217866477c563e2ca4e66d *man/lin.prog.capa.ident.Rd
 70069669829764f9dbc0933fff8beedc *man/ls.ranking.capa.ident.Rd
 98f04842eb67abd69e4a976c6bc7372e *man/ls.sorting.capa.ident.Rd
 c02525161dd580d837ba012e563389b8 *man/ls.sorting.treatment.Rd
-b9d40903cc6f325a9e1f24e6e47e53cb *man/mini.dist.capa.ident.Rd
+98bab2373e01931b60c4896d2a9536f1 *man/mini.dist.capa.ident.Rd
 db25f7afd2f80cc6ee82ace719d82896 *man/mini.var.capa.ident.Rd
 882705e204af333245ff60b127f6d18e *man/normalize-methods.Rd
 c537674016332fcfb5dc222f4c44f0c0 *man/orness-methods.Rd

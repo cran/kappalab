@@ -205,7 +205,8 @@ mini.dist.capa.ident(a.mu,3,"global.scores")
 }
 
 ## a minimum distance 2-additive solution
-min.dist <- mini.dist.capa.ident(a.mu,2,"binary.alternatives",A.Choquet.preorder = Acp)              
+min.dist <- mini.dist.capa.ident(a.mu,2,"binary.alternatives",
+                                 A.Choquet.preorder = Acp)              
 m <- min.dist$solution
 m
 
