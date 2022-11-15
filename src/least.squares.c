@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -55,8 +55,8 @@
        Calcul de la matrice objectif
        R: matrice objectif est R'R 
        X: matrice de scores sur les elements en une ligne
-       xl: borne inf. des Möbius
-       xu: borne sup. des Möbius
+       xl: borne inf. des Mobius
+       xu: borne sup. des Mobius
        Integral: 1: Choquet, autre: Sipos
 
        Fonction objectif: x'R'Rx - 2y'Rx
@@ -68,7 +68,7 @@ void k_additive_objectif(int *n, int *k, int *subset, int *Integral, double *X,
 {
   int i,j,l,m,p,q;
   int sb = (int)sum_binom(*n,*k);
-  double min_x, min_xplus, min_xminus;
+  double min_x = 0.0, min_xplus = 0.0, min_xminus = 0.0;
 
   p = 0;
   q = 0;
@@ -118,7 +118,7 @@ void k_additive_objectif(int *n, int *k, int *subset, int *Integral, double *X,
     q += sb - 1;
   }
 
-  /*  Initialise la borne inf. et sup. de la representation de Möbius */
+  /*  Initialise la borne inf. et sup. de la representation de Mobius */
   for (i=0;i<sb-1;i++) {
 
     xl[i]=(double)lower_bound(i+1, *n);

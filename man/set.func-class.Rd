@@ -131,7 +131,7 @@ summary(mu)
 
 ## save the set function to a file
 d <- to.data.frame(mu)
-write.table(d,"my.set.func.csv",sep="\t")
+\dontrun{write.table(d,"my.set.func.csv",sep="\t")}
 
 # finally, some conversions that should work
 mu <- set.func(c(0,1,1,1,2,2,2,3))

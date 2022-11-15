@@ -124,7 +124,7 @@ summary(mu)
 
 ## save the set function to a file
 d <- to.data.frame(mu)
-write.table(d,"my.card.set.func.csv",sep="\t")
+\dontrun{write.table(d,"my.card.set.func.csv",sep="\t")}
 
 # finally, some other conversions that should work
 mu <- card.set.func(0:5)

@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -114,18 +114,18 @@ double Sipos_integral(int n, double *mu, double *f, int *index) {
 /******************************************************************************
 
   Apprentissage de la mesure floue mu a 2**n coefficients par une methode
-  heuristique iterative (modification de la précédente)
+  heuristique iterative (modification de la precedente)
   mu doit etre initialisee en dehors de la routine, typiquement par une 
   mesure equidistribuee additive.
   L'algorithme utilise le codage binaire des mesures floues
 
-  Résumé de la modification :
+  Resume de la modification :
   step 1.1, 1.2 : idem (update)
-  step 1.3 : test avec TOUS les voisins inf ou sup (modifiés ou pas)
-  on effectue les steps 1.2 et 1.3 sur toutes les données (1 itération)
+  step 1.3 : test avec TOUS les voisins inf ou sup (modifies ou pas)
+  on effectue les steps 1.2 et 1.3 sur toutes les donnees (1 iteration)
   step 2.1 : inutile car par construction la mesure est monotone
   step 2.2 : idem avant
-  retour au step 1.2 pour une nouvelle itération	
+  retour au step 1.2 pour une nouvelle iteration	
 
   Michel GRABISCH, Univ. of Paris I, 2004
 
@@ -159,7 +159,7 @@ void hlms(int *n, int *Integral, int *itmax, double *mu, int *n_data,
   int *current_node_minus = (int *) R_alloc(*n, sizeof(int) );
   
   int *index = (int *) R_alloc(*n, sizeof(int) );
-  double error, criterion, prec_criterion;
+  double error, criterion = 0.0, prec_criterion;
   double *f;
   double *path_mu_plus = (double *) R_alloc( (*n+1), sizeof(double) );
   double *path_mu_minus = (double *) R_alloc( (*n+1), sizeof(double) );
@@ -170,8 +170,8 @@ void hlms(int *n, int *Integral, int *itmax, double *mu, int *n_data,
   int *upper_neighbors = (int *) R_alloc(*n, sizeof(int) );
   int *lower_neighbors = (int *) R_alloc(*n, sizeof(int) );
 
-  double mean_upper_mu, mean_lower_mu;
   double min_upper_dist, min_lower_dist;
+  double mean_upper_mu = 0.0, mean_lower_mu = 0.0;
   double fading = 1.0, grad,emax;
   double outmax, res, norm,normax;
 

@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -83,7 +83,7 @@ int difference (int i,int j,int n)
  ************************************************************************/
 int lower_bound (int i,int n)
 {
-  int l,p,diff;
+  int l=0,p,diff;
   int bound;
 
   diff=difference(0,i,n);
@@ -105,7 +105,7 @@ int lower_bound (int i,int n)
  ************************************************************************/ 
 int upper_bound (int i,int n)
 {
-  int l,p,diff;
+  int l=0,p,diff;
   int bound;
  
   diff=difference(0,i,n);
@@ -165,8 +165,8 @@ int minimal(int p,int i,int *index)
 
 /********************************************************************
 
-    Borne inf. de la representation de Möbius
-    Utilisé dans la cadre de la prog. lin.
+    Borne inf. de la representation de Mobius
+    Utilise dans la cadre de la prog. lin.
 
 
 ********************************************************************/

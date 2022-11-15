@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -396,7 +396,7 @@ void Choquet_integral_Mobius(int *n, int *k, double *a, int *subset,
 
   int i,j,l;
   int sb = (int)sum_binom(*n,*k);
-  double min_f;
+  double min_f = 0.0;
 
   *resul = 0.0;
   for (i=1;i<sb;i++)
@@ -1053,7 +1053,7 @@ double sum_binom(int n, int k) {
 
 void lex_permut(int n, int p, int *x, int *res) {
 
-  int i,j,k,q,l,ifact;
+  int i,j,k,q,l=0,ifact;
   for (i=n-1;i>=0;i--) {
     ifact = (int)fact(i);
     p = p % ((i+1)*ifact);

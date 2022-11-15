@@ -31,7 +31,7 @@ a <- Mobius.set.func(-1:-16,4,4)
 
 ## to data.frame
 d <- to.data.frame(a)
-write.table(d,"my.set.func.csv",sep="\t") 
+\dontrun{write.table(d,"my.set.func.csv",sep="\t")}
 }
 
 \keyword{methods}

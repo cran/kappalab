@@ -147,7 +147,7 @@ summary(a)
 
 ## save the Mobius transform to a file
 d <- to.data.frame(a)
-write.table(d,"my.Mobius.set.func.csv",sep="\t")
+\dontrun{write.table(d,"my.Mobius.set.func.csv",sep="\t")}
 
 # finally, some conversions that should work
 mu <- set.func(c(0,1,1,1,2,2,2,3))

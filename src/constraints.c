@@ -1,6 +1,6 @@
 /*##############################################################################
 #
-# Copyright © 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
@@ -63,14 +63,15 @@ void monotonicity_constraints(int *n, int *k, int *subset, int *A) {
   
   m = 0;
   for (i=0; i<*n; i++)
-    for (j=1; j<pow; j++)
-      if(j & 1<<i)
-	for(l=1;l<sb;l++)
-	  if (((subset[l] & j) == subset[l]) 
-	      && (subset[l] & 1<<i))
-	    A[m++] = 1;
-	  else
-	    A[m++] = 0;
+      for (j=1; j<pow; j++)
+	  if(j & 1<<i) {
+	      for(l=1;l<sb;l++)
+		  if (((subset[l] & j) == subset[l]) 
+		      && (subset[l] & 1<<i))
+		      A[m++] = 1;
+		  else
+		      A[m++] = 0;
+	  }
 }
 
 
@@ -85,7 +86,7 @@ void Choquet_preorder_constraint(int *n, int *k, int *subset, double *a,
 
   int i,j,l;
   int sb = (int)sum_binom(*n,*k);
-  double min_a, min_b;
+  double min_a = 0.0, min_b = 0.0;
 
   for (i=1;i<sb;i++) {
 		
@@ -212,7 +213,7 @@ void inter_additive_constraint(int *n, int *k, int *subset, int *partition,
   int *part_binary = (int *) R_alloc(*p, sizeof(int));
   /* binary coding of one element of the parition */
   int *set = (int *) R_alloc(*n, sizeof(int));
-  int included,  max_card_subset, max_card = 0;
+  int included, max_card = 0;
 
   /* translate the partition to binary */
   for (i=0;i<*p;i++) {
@@ -226,11 +227,8 @@ void inter_additive_constraint(int *n, int *k, int *subset, int *partition,
 
     /* find max card subset */
     c = cardinal(part_binary[i]);
-    if (c > max_card) {
-      
-      max_card = c;
-      max_card_subset = i;
-    }
+    if (c > max_card) 
+	max_card = c;
   }
   
   /* subsets whose Mobius has to be zero */
