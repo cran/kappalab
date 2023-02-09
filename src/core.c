@@ -1,23 +1,23 @@
 /*##############################################################################
 #
-# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic   
+# Copyright 2005, 2006, 2007 Michel Grabisch and Ivan Kojadinovic
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #
 # This software is a package for the statistical system GNU R:
-# http://www.r-project.org 
+# http://www.r-project.org
 #
 # This software is governed by the CeCILL license under French law and
-# abiding by the rules of distribution of free software.  You can  use, 
+# abiding by the rules of distribution of free software.  You can  use,
 # modify and/ or redistribute the software under the terms of the CeCILL
 # license as circulated by CEA, CNRS and INRIA at the following URL
-# "http://www.cecill.info". 
+# "http://www.cecill.info".
 #
 # As a counterpart to the access to the source code and  rights to copy,
 # modify and redistribute granted by the license, users are provided only
 # with a limited warranty  and the software's author,  the holder of the
 # economic rights,  and the successive licensors  have only  limited
-# liability. 
+# liability.
 #
 # In this respect, the user's attention is drawn to the risks associated
 # with loading,  using,  modifying and/or developing or reproducing the
@@ -26,9 +26,9 @@
 # therefore means  that it is reserved for developers  and  experienced
 # professionals having in-depth computer knowledge. Users are therefore
 # encouraged to load and test the software's suitability as regards their
-# requirements in conditions enabling the security of their systems and/or 
-# data to be ensured and,  more generally, to use and operate it in the 
-# same conditions as regards security. 
+# requirements in conditions enabling the security of their systems and/or
+# data to be ensured and,  more generally, to use and operate it in the
+# same conditions as regards security.
 #
 # The fact that you are presently reading this means that you have had
 # knowledge of the CeCILL license and that you accept its terms.
@@ -95,7 +95,7 @@ void binary2subset(int n, int b, int *x) {
 
 
 /*****************************************************************************
- 
+
    Pointer version of the binary2subset function, interfaced in kappalab.R
    l: the real length of x
 
@@ -104,7 +104,7 @@ void binary2subset(int n, int b, int *x) {
 void binary2subsetR(int *n, int *b, int *x, int *l) {
 
   int i;
-  
+
   *l=0;
 
   for(i=0; i<*n; i++)
@@ -126,9 +126,9 @@ void binary2subsetR(int *n, int *b, int *x, int *l) {
 
 *****************************************************************************/
 
-void tri(register int n, register int *tourn, register double *vec, 
+void tri(register int n, register int *tourn, register double *vec,
 	 register int *iv) {
-  
+
   int i;
   register int k, kk;
   double x;
@@ -145,7 +145,7 @@ void tri(register int n, register int *tourn, register double *vec,
     k = i;
 
     while((k > 1) && (x < vec[tourn[(kk = k >> 1)]])) {
-	      
+
       tourn[k] = tourn[kk];
       k = kk;
     }
@@ -171,7 +171,7 @@ void tri(register int n, register int *tourn, register double *vec,
 	k = (k << 1) | 1;
       }
       else {
-		
+
 	tourn[k] = tourn[k << 1];
 	k = k << 1;
       }
@@ -210,9 +210,9 @@ int cardinal(int n) {
 }
 
 /**************************************************************************
-    
+
   Conjugate transform of a set function
-  mu: set function 
+  mu: set function
   The result is written in mu_out
 
 ***************************************************************************/
@@ -223,14 +223,14 @@ void setfunction2conjugate(double *mu, int *n, double *mu_out) {
   int pow = 1<<*n;
   for (i=0;i<pow;i++)
     mu_out[i] = mu[pow-1] - mu[pow-1-i];
-  
+
 }
 
 /**************************************************************************
-    
+
   Quick computation of the lower cardinality transform
   c: factor used in the transformation
-  mu: set function 
+  mu: set function
   The result is written in mu
 
 ***************************************************************************/
@@ -239,10 +239,10 @@ void fast_lower_cardinality_transform(double *mu, double c, int n) {
 
   int i;
   int j,k;
- 
+
   for (i=1;i<=n;i++)
     for (j=1;j<(1<<i);j+=2)
-      for (k=0;k<(1<<(n-i));k++) 
+      for (k=0;k<(1<<(n-i));k++)
 	mu[j*(1<<(n-i))+k] += c*mu[(j-1)*(1<<(n-i))+k];
 }
 
@@ -311,7 +311,7 @@ void normalize_Mobius(int n, int k, double *a) {
 
 /*****************************************************************************
 
-  k-truncation of a set function mu. 
+  k-truncation of a set function mu.
   Returns its truncated Mobius representation.
   Result in a (dim sum_binom(n,k)).
 
@@ -335,7 +335,7 @@ void k_truncation(int *n, int *k, double *mu, int *subset, double *a) {
 void cardinal2setfunction(int *n, double *csf, double *sf) {
 
   int i;
-  for (i=0; i<(1<<*n); i++) 
+  for (i=0; i<(1<<*n); i++)
     sf[i] = csf[cardinal(i)];
 }
 
@@ -377,7 +377,7 @@ void Choquet_integral_game(int *n, double *mu, double *f, double *resul) {
   *resul = f[index[0]] * mu[(1<<*n)-1];
 
   for(i=1; i<*n; i++)
-    *resul += (f[index[i]] - f[index[i - 1]]) 
+    *resul += (f[index[i]] - f[index[i - 1]])
       * mu[subset2binary(index + i, *n - i)];
 
   index = NULL;
@@ -391,7 +391,7 @@ void Choquet_integral_game(int *n, double *mu, double *f, double *resul) {
 
 *****************************************************************************/
 
-void Choquet_integral_Mobius(int *n, int *k, double *a, int *subset, 
+void Choquet_integral_Mobius(int *n, int *k, double *a, int *subset,
 			     double *f, double *resul) {
 
   int i,j,l;
@@ -419,7 +419,7 @@ void Choquet_integral_Mobius(int *n, int *k, double *a, int *subset,
 
   Calculation of the Sugeno integral.
   mu : game (2^n coefficients)
-  f : function (n coefficients) 
+  f : function (n coefficients)
 
 *****************************************************************************/
 
@@ -442,14 +442,14 @@ void Sugeno_integral_game(int *n, double *mu, double *f, double *resul) {
 /*****************************************************************************
 
   Calculation of the Sugeno integral.
-  a : Mobius representation of a game 
-  f : function (n coefficients) 
+  a : Mobius representation of a game
+  f : function (n coefficients)
 
   VERY VERY VERY SUBOPTIMAL!!!
 
 *****************************************************************************/
 
-void Sugeno_integral_Mobius(int *n, int *k, double *a, int *subset, 
+void Sugeno_integral_Mobius(int *n, int *k, double *a, int *subset,
 			    double *f, double *resul) {
 
   int i,j,s;
@@ -470,7 +470,7 @@ void Sugeno_integral_Mobius(int *n, int *k, double *a, int *subset,
     s = subset2binary(index+i, *n-i);
     mu = 0.0;
     for (j=1; j < sb; j++)
-      if ((subset[j] & s) == subset[j]) 
+      if ((subset[j] & s) == subset[j])
 	mu += a[j];
     *resul = SUP(*resul, INF(f[index[i]], mu));
   }
@@ -479,10 +479,10 @@ void Sugeno_integral_Mobius(int *n, int *k, double *a, int *subset,
 }
 
 /*****************************************************************************
-  
+
   Calculation of the Sipos integral.
   mu : game (2^n coefficients)
-  f : function (n coefficients) 
+  f : function (n coefficients)
 
 *****************************************************************************/
 
@@ -496,7 +496,7 @@ void Sipos_integral_game(int *n, double *mu, double *f, double *resul) {
   tri(*n, tourn, f, index);
 
   /* Computes p such that
-     f[index[0]] <= ... <= f[index[p-1]] < 0 <= f[index[p]] <= ... 
+     f[index[0]] <= ... <= f[index[p-1]] < 0 <= f[index[p]] <= ...
      <= f[index[n-1]]
   */
   for(p=0; (p<*n) && (f[index[p]]<0); p++);
@@ -507,7 +507,7 @@ void Sipos_integral_game(int *n, double *mu, double *f, double *resul) {
   if(p>0) {
 
     for(i=0; i<p-1; i++)
-      *resul += (f[index[i]] - f[index[i+1]]) 
+      *resul += (f[index[i]] - f[index[i+1]])
 	* mu[subset2binary(index, i+1)];
 
     *resul += f[index[p-1]] * mu[subset2binary(index, p)];
@@ -519,16 +519,16 @@ void Sipos_integral_game(int *n, double *mu, double *f, double *resul) {
     *resul += f[index[p]] * mu[subset2binary(index+p, *n-p)];
 
     for(i=p+1; i<*n; i++)
-      *resul += (f[index[i]] - f[index[i-1]]) 
+      *resul += (f[index[i]] - f[index[i-1]])
 	* mu[subset2binary(index+i, *n-i)];
   }
-  
+
   index = NULL;
 }
 
 /*****************************************************************************
 
-  Generation of the first k + 1 levels of the power set of X 
+  Generation of the first k + 1 levels of the power set of X
   in the "natural" order. Recursive function.
 
 *****************************************************************************/
@@ -537,7 +537,7 @@ void k_power_set_rec(int n, int k, int last, int *power_set, int *b) {
 
   int i, istart;
 
-  /* look for the leftmost 1 in b and start to fill blank cases 
+  /* look for the leftmost 1 in b and start to fill blank cases
      with 1 left from this position */
   istart = n;
 
@@ -555,13 +555,13 @@ void k_power_set_rec(int n, int k, int last, int *power_set, int *b) {
 
   if(last != (int)sum_binom(n,k) - 1)
     k_power_set_rec(n, k, last, power_set, b+1);
-    
+
 }
 
 /*****************************************************************************
 
-  Generation of the first k + 1 levels of the power set of X 
-  in the "natural" order. Wrapps the previous function. 
+  Generation of the first k + 1 levels of the power set of X
+  in the "natural" order. Wrapps the previous function.
 
 *****************************************************************************/
 
@@ -587,7 +587,7 @@ void k_power_set_char(int *n, int *k, int *k_power_set, char **subset) {
 
   subset[0] = (char *) R_alloc(3, sizeof(char));
 
-  sprintf(subset[0],"{}");
+  snprintf(subset[0], 3, "{}");
 
   for(i=1; i<sum_binom(*n,*k); i++) {
 
@@ -597,13 +597,13 @@ void k_power_set_char(int *n, int *k, int *k_power_set, char **subset) {
     binary2subset(*n,k_power_set[i],x);
 
     subset[i] = (char *) R_alloc(SET_MAX * (*n), sizeof(char));
-      
-    sprintf(subset[i],"{%d",x[0]+1);
+
+    snprintf(subset[i], SET_MAX * (*n), "{%d", x[0]+1);
 
     for(j=1; j<cardinal(k_power_set[i]); j++) {
 
-      sprintf(string,",%d", x[j]+1);
-      strcat(subset[i],string);
+	snprintf(string, 255, ",%d", x[j]+1);
+	strcat(subset[i], string);
     }
 
     strcat(subset[i],"}");
@@ -624,7 +624,7 @@ void power_set_binary_char(int *n, char **power_set) {
 
   power_set[0] = (char *) R_alloc(3, sizeof(char));
 
-  sprintf(power_set[0],"{}");
+  snprintf(power_set[0], 3, "{}");
 
   for(i=1; i<(1<<*n); i++) {
 
@@ -632,15 +632,14 @@ void power_set_binary_char(int *n, char **power_set) {
       x[j]=0;
 
     binary2subset(*n,i,x);
-      
+
     power_set[i] = (char *) R_alloc(SET_MAX * (*n), sizeof(char));
 
-    sprintf(power_set[i],"{%d",x[0]+1);
+    snprintf(power_set[i], SET_MAX * (*n), "{%d",x[0]+1);
 
     for(j=1; j<cardinal(i); j++) {
-
-      sprintf(string,",%d", x[j]+1);
-      strcat(power_set[i],string);
+	snprintf(string, 255, ",%d", x[j]+1);
+	strcat(power_set[i], string);
     }
 
     strcat(power_set[i],"}");
@@ -662,7 +661,7 @@ void Rprint_setfunction(int *n, int *k, double *mu, int *subset, int *mobius) {
 
   for(i=1; i<sum_binom(*n,*k); i++) {
 
-      for(j=0; j<*n; j++) 
+      for(j=0; j<*n; j++)
 	x[j]=0;
       binary2subset(*n,subset[i],x);
 
@@ -670,12 +669,12 @@ void Rprint_setfunction(int *n, int *k, double *mu, int *subset, int *mobius) {
 
       for(j=1; j<cardinal(subset[i]); j++)
 	Rprintf(",%d",x[j]+1);
-      
+
       if (*mobius)
 	Rprintf("}\t\t%lf\n",mu[i]);
       else
 	Rprintf("}\t\t%lf\n",mu[subset[i]]);
-    }  
+    }
 }
 
 /*****************************************************************************
@@ -693,7 +692,7 @@ void binary2natural(int *n, double *sf, int *power_set, double *sf_out) {
 }
 
 /*****************************************************************************
- 
+
   Writing a set function given in "natural" order in the binary order
   Pre: power_set contains the power_set in "natural" order
 
@@ -709,7 +708,7 @@ void natural2binary(int *n, double *sf, int *power_set, double *sf_out) {
 
 /*****************************************************************************
 
-  Is sf a k-cardinal set function? Used to test both the cardinality of 
+  Is sf a k-cardinal set function? Used to test both the cardinality of
   a set function or of its Mobius representation.
   Pre: sf is given in "natural" order.
 
@@ -728,7 +727,7 @@ void is_kcardinal(int *n, int *k, double *sf, int *flag) {
     for (j=1; j < cni; j++) {
 
       if (sf[l] != sf[l+1]) {
- 
+
 	*flag = 1;
 	return;
       }
@@ -740,7 +739,7 @@ void is_kcardinal(int *n, int *k, double *sf, int *flag) {
 
 /*****************************************************************************
 
-  Is mu a cardinal set function? 
+  Is mu a cardinal set function?
   Pre: mu given in binary order
 
 *****************************************************************************/
@@ -760,11 +759,11 @@ void is_cardinal_setfunction(int *n, double *mu, int *power_set, int *flag) {
   Is mu a k-additive set function?
   Pre: 1 <= k <= n
   kmax: the order of truncation of mu.
-  a: Mobius representation of mu, given in the "natural" order 
+  a: Mobius representation of mu, given in the "natural" order
 
 *****************************************************************************/
 
-void is_kadditive_Mobius(int *n, int *kmax, int *k, double *a, double *epsilon, 
+void is_kadditive_Mobius(int *n, int *kmax, int *k, double *a, double *epsilon,
 			 int *flag) {
 
   int i;
@@ -786,7 +785,7 @@ void is_kadditive_Mobius(int *n, int *kmax, int *k, double *a, double *epsilon,
 
   for (i=sb; i<(int)sum_binom(*n,*kmax); i++)
     if (fabs(a[i]) > *epsilon) {
- 
+
       *flag = 1;
       return;
     }
@@ -795,7 +794,7 @@ void is_kadditive_Mobius(int *n, int *kmax, int *k, double *a, double *epsilon,
 /*****************************************************************************
 
   Is mu a k-additive set function?
-  Pre: mu given in binary order 
+  Pre: mu given in binary order
 
 *****************************************************************************/
 
@@ -803,9 +802,9 @@ void is_kadditive_setfunction(int *n, int *k, double *mu, int *power_set,
 			      double *epsilon, int *flag) {
 
   double *mu_out = (double *) R_alloc((1<<*n), sizeof(double));
-  
+
   setfunction2Mobius(mu,n);
-  
+
   binary2natural(n, mu, power_set, mu_out);
 
   is_kadditive_Mobius(n, n, k, mu_out, epsilon, flag);
@@ -816,7 +815,7 @@ void is_kadditive_setfunction(int *n, int *k, double *mu, int *power_set,
 
 /*****************************************************************************
 
-  Adds a strict veto criterion to mu_init (n criteria) at position n. 
+  Adds a strict veto criterion to mu_init (n criteria) at position n.
   Result in mu (n+1 criteria).
 
 *****************************************************************************/
@@ -832,7 +831,7 @@ void add_veto_setfunction(int *n, double *mu_init, double *mu) {
 
 /*****************************************************************************
 
-  Searchs for the upper neighbors 
+  Searchs for the upper neighbors
 
 *****************************************************************************/
 
@@ -850,7 +849,7 @@ void search_upper_neighbors(int n, int node, int *neighbors) {
 
 /*****************************************************************************
 
-  Searchs for the lower neighbors 
+  Searchs for the lower neighbors
 
 *****************************************************************************/
 
@@ -879,7 +878,7 @@ void is_monotone_setfunction(int *n, double *mu, int *print, double *epsilon,
   int i, j, k, level, c;
   int neighbors[NMAX];
   int subset[NMAX];
-  
+
   *flag = 0;
 
   for(i=0; i<(1<<*n)-1; i++) {
@@ -898,7 +897,7 @@ void is_monotone_setfunction(int *n, double *mu, int *print, double *epsilon,
 	  Rprintf("Violation of monotonicity constraint between {");
 	  binary2subset(*n, i, subset);
 	  c = cardinal(i);
-		  
+
 	  for(k=0; k<cardinal(i); k++)
 	    Rprintf(" %d", subset[k] + 1);
 
@@ -925,17 +924,17 @@ void is_monotone_setfunction(int *n, double *mu, int *print, double *epsilon,
 
 *****************************************************************************/
 
-void is_monotone_Mobius(int *n, int *k, double *a, int *subset, int *print, 
+void is_monotone_Mobius(int *n, int *k, double *a, int *subset, int *print,
 			double *epsilon, int *flag) {
 
   int i,j,l,m,c,r;
   int pow = 1<<*n;
   int sb = (int)sum_binom(*n,*k);
-  double s; 
+  double s;
   int list[NMAX];
 
   *flag = 0;
-  
+
   for (i=0; i<*n; i++)
     for (j=1; j<pow; j++)
       if(j & 1<<i) {
@@ -949,7 +948,7 @@ void is_monotone_Mobius(int *n, int *k, double *a, int *subset, int *print,
 
 	  *flag = 1;
 	  if (*print) {
- 
+
 	    r = j ^ 1<<i;
 	    Rprintf("Violation of monotonicity constraint between {");
 	    binary2subset(*n, r, list);
@@ -970,8 +969,8 @@ void is_monotone_Mobius(int *n, int *k, double *a, int *subset, int *print,
 	  else
 	    return;
 	}
-	    
-      
+
+
       }
 }
 
@@ -1005,7 +1004,7 @@ double gamm(int a, int n) {
 /*****************************************************************************
 
   The zeta function
- 
+
 *****************************************************************************/
 
 double zeta(int a, int n) {
@@ -1039,7 +1038,7 @@ double binom(int n, int k) {
 double sum_binom(int n, int k) {
 
   int i;
-  double s = 1.0; 
+  double s = 1.0;
   for (i=1;i<=k;i++)
     s += binom(n,i);
   return s;
@@ -1059,7 +1058,7 @@ void lex_permut(int n, int p, int *x, int *res) {
     p = p % ((i+1)*ifact);
     q = (int)(p / ifact);
     k = x[q];
-    
+
     for (j=0;j<=i;j++)
       if (x[j] == k) {
 	l = j;
@@ -1067,14 +1066,14 @@ void lex_permut(int n, int p, int *x, int *res) {
       }
     for (j=l;j<i;j++)
       x[j] = x[j+1];
-    
+
     res[n-1-i]=k;
   }
 }
 
 /*****************************************************************************
 
-  Calculation of the Shapley value of mu. 
+  Calculation of the Shapley value of mu.
   Result in phi (dimension n).
 
 *****************************************************************************/
@@ -1095,18 +1094,18 @@ void Shapley_value_setfunction(int *n, double *mu, double *phi) {
 
 /*****************************************************************************
 
-  Calculation of the Shapley value of a set function using its 
-  Mobius representation a. 
+  Calculation of the Shapley value of a set function using its
+  Mobius representation a.
   Result in phi (dimension n).
 
 *****************************************************************************/
 
-void Shapley_value_Mobius(int *n, int *k, double *a, int *subset, 
+void Shapley_value_Mobius(int *n, int *k, double *a, int *subset,
 			  double *phi) {
-  int i,j; 
+  int i,j;
   int sb = (int)sum_binom(*n,*k);
 
-  for (i=0;i<*n;i++) { 
+  for (i=0;i<*n;i++) {
     phi[i] = 0.0;
     for (j=1; j<sb; j++)
       if (subset[j] & 1<<i)
@@ -1116,7 +1115,7 @@ void Shapley_value_Mobius(int *n, int *k, double *a, int *subset,
 
 /*****************************************************************************
 
-  Calculation of the Shapley interaction indices of mu. 
+  Calculation of the Shapley interaction indices of mu.
   Result in phi (dimension n*n).
 
 *****************************************************************************/
@@ -1133,16 +1132,16 @@ void interaction_indices_setfunction(int *n, double *mu, double *phi) {
       phi[k*(*n)+j] = 0.0;
       for(i=0; i<pow; i++)
 	if(!(i & 1<<k) && !(i & 1<<j))
-	  phi[k*(*n)+j] += zeta(cardinal(i), *n) * 
+	  phi[k*(*n)+j] += zeta(cardinal(i), *n) *
 	    (mu[i+(1<<k)+(1<<j)] - mu[i+(1<<k)] - mu[i+(1<<j)]+ mu[i]);
-	       
+
     }
   }
 
   for(k=0; k<*n; k++)
     for(j=k+1; j<*n;j++)
       phi[j*(*n)+k] = phi[k*(*n)+j];
-     
+
 
   for(k=0; k<*n; k++)
     phi[k*(*n)+k] = 0.0;
@@ -1150,13 +1149,13 @@ void interaction_indices_setfunction(int *n, double *mu, double *phi) {
 
 /*****************************************************************************
 
-  Calculation of the Shapley interaction indices of a set function using its 
-  Mobius representation a. 
+  Calculation of the Shapley interaction indices of a set function using its
+  Mobius representation a.
   Result in phi (dimension n*n).
 
 *****************************************************************************/
 
-void interaction_indices_Mobius(int *n, int *k, double *a, int *subset, 
+void interaction_indices_Mobius(int *n, int *k, double *a, int *subset,
 				double *phi) {
   int i, j, l;
   int sb = (int)sum_binom(*n,*k);
@@ -1167,13 +1166,13 @@ void interaction_indices_Mobius(int *n, int *k, double *a, int *subset,
       phi[i*(*n)+j] = 0.0;
       for(l=1; l<sb; l++)
 	if((subset[l] & 1<<i) && (subset[l] & 1<<j))
-	  phi[i*(*n)+j] += a[l]/(double)(cardinal(subset[l])-1);    
+	  phi[i*(*n)+j] += a[l]/(double)(cardinal(subset[l])-1);
     }
 
   for(i=0; i<*n; i++)
     for(j=i+1; j<*n;j++)
       phi[j*(*n)+i] = phi[i*(*n)+j];
-     
+
 
   for(i=0; i<*n; i++)
     phi[i*(*n)+i] = 0.0;
@@ -1182,7 +1181,7 @@ void interaction_indices_Mobius(int *n, int *k, double *a, int *subset,
 
 /*****************************************************************************
 
-  Calculation of veto indices of a capacity mu 
+  Calculation of veto indices of a capacity mu
   Result in v (dimension n)
 
 *****************************************************************************/
@@ -1197,7 +1196,7 @@ void veto_capacity(int *n, double *mu, double *v) {
     for(i=1; i<pow; i++)
       if(!(i & 1<<k))
 	v[k] += mu[i] / binom(*n-1,cardinal(i));
-	
+
     v[k] /= (double)(*n - 1) * mu[pow-1];
     v[k] = 1.0 - v[k];
   }
@@ -1223,7 +1222,7 @@ void veto_Mobius(int *n, int *k, double *a, int *subset, double *v) {
     for(j=1; j<sb; j++)
       if(!(subset[j] & 1<<i))
 	v[i] += a[j] / (double)(cardinal(subset[j]) + 1);
-	
+
     v[i] *= (double)(*n)/(double)(*n - 1);
     v[i] = 1.0 - v[i];
   }
@@ -1231,7 +1230,7 @@ void veto_Mobius(int *n, int *k, double *a, int *subset, double *v) {
 
 /*****************************************************************************
 
-  Calculation of favor indices of a capacity mu 
+  Calculation of favor indices of a capacity mu
   Result in favor (dimension n)
 
 *****************************************************************************/
@@ -1247,7 +1246,7 @@ void favor_capacity(int *n, double *mu, double *f) {
     for(i=0; i<pow; i++)
       if(!(i & 1<<k))
 	f[k] += mu[i + (1<<k)] / binom(*n-1,cardinal(i));
-	
+
     f[k] /= (double)(*n - 1) * mu[pow-1];
     f[k] -= 1.0/(double)(*n - 1);
   }
@@ -1262,7 +1261,7 @@ void favor_capacity(int *n, double *mu, double *f) {
 
 void favor_Mobius(int *n, int *k, double *a, int *subset, double *f) {
   int i,j,l;
-  int sb = (int)sum_binom(*n,*k); 
+  int sb = (int)sum_binom(*n,*k);
 
   normalize_Mobius(*n,*k,a);
 
@@ -1276,12 +1275,12 @@ void favor_Mobius(int *n, int *k, double *a, int *subset, double *f) {
 	  if ((subset[j] | 1<<i) == subset[l])
 	    break;
 	if (l < sb)
-	  f[i] += (a[j] + a[l]) 
+	  f[i] += (a[j] + a[l])
 	    / (double)(cardinal(subset[j]) + 1);
 	else
 	  f[i] += a[j] / (double)(cardinal(subset[j]) + 1);
       }
-	
+
     f[i] *= (double)(*n)/(double)(*n - 1);
     f[i] -= 1.0/(double)(*n - 1);
   }
@@ -1289,32 +1288,32 @@ void favor_Mobius(int *n, int *k, double *a, int *subset, double *f) {
 
 /*****************************************************************************
 
-  Calculation of the orness of a capacity mu 
+  Calculation of the orness of a capacity mu
 
 *****************************************************************************/
 
 void orness_capacity(int *n, double *mu, double *resul) {
 
-  int i; 
+  int i;
   int pow = 1<<*n;
 
   *resul = 0.0;
-  for(i=1; i<pow-1; i++) /* could be optimized */ 
-    *resul += mu[i] / binom(*n, cardinal(i)); 
+  for(i=1; i<pow-1; i++) /* could be optimized */
+    *resul += mu[i] / binom(*n, cardinal(i));
 
   *resul /= (double)(*n - 1) *  mu[pow-1];
 }
 
 /*****************************************************************************
 
-  Calculation of the orness from the Mobius representation of a capacity 
+  Calculation of the orness from the Mobius representation of a capacity
 
 *****************************************************************************/
 
 void orness_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
 
-  int i,c; 
-  int sb = (int)sum_binom(*n,*k); 
+  int i,c;
+  int sb = (int)sum_binom(*n,*k);
 
   normalize_Mobius(*n,*k,a);
 
@@ -1322,7 +1321,7 @@ void orness_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
   for(i=1; i<sb; i++) {
 
     c = cardinal(subset[i]);
-    *resul +=  (double)(*n - c) * a[i] / (double)(c + 1); 
+    *resul +=  (double)(*n - c) * a[i] / (double)(c + 1);
   }
 
   *resul /= (double)(*n - 1);
@@ -1344,9 +1343,9 @@ void variance_capacity(int *n, double *mu, double *resul) {
   for(k=0; k<*n; k++)
     for(i=0; i<pow; i++)
       if(!(i & 1<<k))
-	*resul += gamm(cardinal(i), *n) 
+	*resul += gamm(cardinal(i), *n)
 	  * SQR((mu[i + (1<<k)] - mu[i])
-		/ mu[pow-1]); 
+		/ mu[pow-1]);
 
   *resul -= 1.0/(double)*n;
 
@@ -1355,16 +1354,16 @@ void variance_capacity(int *n, double *mu, double *resul) {
 
 /*****************************************************************************
 
-  Calculation of the variance from the Mobius representation of a capacity 
+  Calculation of the variance from the Mobius representation of a capacity
 
 *****************************************************************************/
 
 void variance_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
- 
+
   int i,j,l;
   int pow = 1<<*n;
   int sb = (int)sum_binom(*n,*k);
-  double s; 
+  double s;
 
   normalize_Mobius(*n,*k,a);
 
@@ -1374,10 +1373,10 @@ void variance_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
 
 	s = 0.0;
 	for(l=1;l<sb;l++)
-	  if (((subset[l] & j) == subset[l]) 
+	  if (((subset[l] & j) == subset[l])
 	      && (subset[l] & 1<<i))
 	    s += a[l];
-	    
+
 	*resul += gamm(cardinal(j)-1, *n) * SQR(s);
       }
 
@@ -1388,7 +1387,7 @@ void variance_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
 
 /*****************************************************************************
 
-  Calculation of the normalized Marichal entropy of a capacity mu 
+  Calculation of the normalized Marichal entropy of a capacity mu
 
 *****************************************************************************/
 
@@ -1402,39 +1401,39 @@ void entropy_capacity(int *n, double *mu, double *resul) {
   for(k=0; k<*n; k++)
     for(i=0; i<pow; i++)
       if(!(i & 1<<k))
-	*resul += gamm(cardinal(i), *n) 
+	*resul += gamm(cardinal(i), *n)
 	  * H((mu[i + (1<<k)] - mu[i])
 	      /mu[pow-1]);
 
-  *resul /= log(*n); 
+  *resul /= log(*n);
 }
 
 /*****************************************************************************
 
-  Calculation of the normalized Marichal 
-  from the Mobius representation of a capacity 
+  Calculation of the normalized Marichal
+  from the Mobius representation of a capacity
 
 *****************************************************************************/
 
 void entropy_Mobius(int *n, int *k, double *a, int *subset, double *resul) {
- 
+
   int i,j,l;
   int pow = 1<<*n;
   int sb = (int)sum_binom(*n,*k);
-  double s; 
+  double s;
 
   normalize_Mobius(*n,*k,a);
-  
+
   for (i=0; i<*n; i++)
     for (j=1; j<pow; j++)
       if(j & 1<<i) {
 
 	s = 0.0;
 	for(l=1;l<sb;l++)
-	  if (((subset[l] & j) == subset[l]) 
+	  if (((subset[l] & j) == subset[l])
 	      && (subset[l] & 1<<i))
 	    s += a[l];
-	    
+
 	*resul += gamm(cardinal(j)-1, *n) * H(s);
       }
 

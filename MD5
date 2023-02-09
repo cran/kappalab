@@ -1,5 +1,5 @@
 ac32110840d0cee016e68857b22d040c *COPYING
-2880f8a95d236ed2d885221cbfb94122 *DESCRIPTION
+0c4517504c7969bcea8f74735592ae42 *DESCRIPTION
 d8408b0b9f28bf8847f8b6ab595d4ad5 *NAMESPACE
 f357b6c7ffd345f26fbcacb2d18c7480 *R/AllClass.R
 82c022192f42ec6c86a21b9aa39d4662 *R/AllGeneric.R
@@ -94,7 +94,7 @@ feaa12f52fda2ff80fb38c796853919b *man/to.data.frame-methods.Rd
 cc37f0bfb2089e96f729d7792ec77c27 *src/cdf.Choquet.h
 4f568a88cd252b089d7f1a77ae7d48f9 *src/constraints.c
 791e035bde4b87b32819dadfd40820ee *src/constraints.h
-9d2f62309bd8eb7620126f3fb75ef5af *src/core.c
+682f81744da8901b0ae18f68163f7a07 *src/core.c
 3001b58d48d568f9483547747535595b *src/core.h
 a2f89de8411209020e1bb5fd5139b5af *src/heuristic.ls.c
 38bc4890734c398bdf95cc6e748ab09b *src/least.squares.c
