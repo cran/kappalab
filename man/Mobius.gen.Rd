@@ -4,7 +4,7 @@
 \alias{Mobius.capacity}
 \alias{additive.capacity}
 
-\title{Create objects representing the Möbius transform of a set function.}
+\title{Create objects representing the MÃ¶bius transform of a set function.}
 
 \description{These functions create objects of class
   \code{Mobius.set.func}, \code{Mobius.game}, or \cr
@@ -19,15 +19,15 @@ additive.capacity(v)
 
 \arguments{
   \item{n}{An object of class \code{numeric} of length 1 equal to the
-    cardinal of the set on which the \enc{Möbius}{Mobius} representation is defined.}
+    cardinal of the set on which the \enc{MÃ¶bius}{Mobius} representation is defined.}
   
   \item{k}{An object of class \code{numeric} of length 1 equal to the
-    order of truncation of the \enc{Möbius}{Mobius} representation. Coefficients whose
+    order of truncation of the \enc{MÃ¶bius}{Mobius} representation. Coefficients whose
     cardinal is superior to \code{k} are considered to be zero.}
   
   \item{object}{Object of class \code{numeric} of length
       \code{choose(n,0) + ... + choose(n,k)} representing the
-      coefficients of the truncated \enc{Möbius}{Mobius} transform in
+      coefficients of the truncated \enc{MÃ¶bius}{Mobius} transform in
       "natural" order.}
     
   \item{v}{An object of class \code{numeric} containing the coefficients

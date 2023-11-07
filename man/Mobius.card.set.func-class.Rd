@@ -7,7 +7,7 @@
 
 \title{Class "Mobius.card.set.func"}
 
-\description{Class representing the \enc{Möbius}{Mobius} transform of a cardinal
+\description{Class representing the \enc{MÃ¶bius}{Mobius} transform of a cardinal
   set function.}
 
 
@@ -19,11 +19,11 @@
   \describe{
 
     \item{\code{n}:}{Object of class \code{numeric} of length 1 equal
-      to the number of elements of the set on which the \enc{Möbius}{Mobius}
+      to the number of elements of the set on which the \enc{MÃ¶bius}{Mobius}
       representation of a cardinal set function is defined.}
     
     \item{\code{data}:}{Object of class \code{numeric} of length
-      \code{n+1} containing the coefficients of the \enc{Möbius}{Mobius}
+      \code{n+1} containing the coefficients of the \enc{MÃ¶bius}{Mobius}
       representation of a cardinal set function.}
   }
 }

@@ -18,7 +18,7 @@
 \describe{
 
   \item{object = "Mobius.capacity" }{The favor indices are computed from
-    the \enc{Möbius}{Mobius} transform of a capacity.}
+    the \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \item{object = "capacity" }{The favor indices are computed directly from a capacity.}
 

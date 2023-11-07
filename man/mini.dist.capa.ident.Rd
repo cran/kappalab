@@ -21,10 +21,10 @@ epsilon = 1e-6)
 \arguments{
   
   \item{a}{Object of class \code{Mobius.game} containing the
-    \enc{Möbius}{Mobius} transform of the game to be approached.}
+    \enc{MÃ¶bius}{Mobius} transform of the game to be approached.}
   
   \item{k}{Object of class \code{numeric} imposing that the solution is at
-    most a k-additive capacity (the \enc{Möbius}{Mobius} transform of subsets whose cardinal is
+    most a k-additive capacity (the \enc{MÃ¶bius}{Mobius} transform of subsets whose cardinal is
     superior to \code{k} vanishes).}
 
   \item{distance}{Object of class \code{character} indicating which
@@ -108,7 +108,7 @@ epsilon = 1e-6)
   The function returns a list structured as follows:
 
   \item{solution}{Object of class \code{Mobius.capacity} containing the
-    \enc{Möbius}{Mobius} transform of the \code{k}-additive solution, if any.}
+    \enc{MÃ¶bius}{Mobius} transform of the \code{k}-additive solution, if any.}
   
   \item{value}{Value of the objective function.}
 

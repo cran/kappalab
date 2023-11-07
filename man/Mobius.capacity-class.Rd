@@ -11,7 +11,7 @@
 
 \title{Class "Mobius.capacity"}
 
-\description{Class representing the \enc{Möbius}{Mobius} transform of a capacity.}
+\description{Class representing the \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \section{Objects from the Class}{Objects can be mainly created by calls
   to the functions \code{Mobius.capacity},
@@ -23,11 +23,11 @@
   \describe{
 
      \item{\code{n}:}{Object of class \code{numeric} of length 1 containing the
-      number of elements of the set on which the \enc{Möbius}{Mobius} transform is
+      number of elements of the set on which the \enc{MÃ¶bius}{Mobius} transform is
       defined. }
     
     \item{\code{k}:}{Object of class \code{numeric} of length 1 containg the order of
-      truncation of the \enc{Möbius}{Mobius} transform: the value of subsets whose cardinal is
+      truncation of the \enc{MÃ¶bius}{Mobius} transform: the value of subsets whose cardinal is
       superior to k is put to zero.}
     
     \item{\code{subsets}:}{Object of class \code{numeric} containing
@@ -36,7 +36,7 @@
     
     \item{\code{data}:}{Object of class \code{numeric} of length
       \code{choose(n,0) + ... + choose(n,k)} representing the
-      coefficients of a truncated \enc{Möbius}{Mobius} transform of a capacity in "natural" order.}
+      coefficients of a truncated \enc{MÃ¶bius}{Mobius} transform of a capacity in "natural" order.}
     
   }
 }

@@ -17,7 +17,7 @@
 \describe{
 
   \item{object = "Mobius.game", f = "numeric" }{The Sugeno integral of
-    \code{f} is computed from the \enc{Möbius}{Mobius} transform of a game.}
+    \code{f} is computed from the \enc{MÃ¶bius}{Mobius} transform of a game.}
 
    \item{object = "game", f = "numeric" }{The Sugeno integral of \code{f}
     is computed from a game.}

@@ -15,7 +15,7 @@
 \section{Methods}{
 \describe{
 
-\item{object = "Mobius.capacity" }{The orness degree is computed from the \enc{Möbius}{Mobius} transform of a capacity.}
+\item{object = "Mobius.capacity" }{The orness degree is computed from the \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \item{object = "capacity" }{The orness degree is computed directly from a capacity.}
 

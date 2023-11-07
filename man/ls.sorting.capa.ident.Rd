@@ -37,7 +37,7 @@ sigf = 5, maxiter = 20, epsilon = 1e-6)
     \code{Mobius.capacity} is to be defined (in short, the number of criteria).}
  
   \item{k}{Object of class \code{numeric} imposing that the solution is at
-    most a k-additive capacity (the \enc{Möbius}{Mobius} transform of subsets whose cardinal is
+    most a k-additive capacity (the \enc{MÃ¶bius}{Mobius} transform of subsets whose cardinal is
     superior to \code{k} vanishes).}
 
   \item{C}{Object of class \code{matrix} containing the
@@ -126,7 +126,7 @@ sigf = 5, maxiter = 20, epsilon = 1e-6)
   The function returns a list structured as follows:
     
   \item{solution}{Object of class
-    \code{Mobius.capacity} containing the \enc{Möbius}{Mobius} transform of the
+    \code{Mobius.capacity} containing the \enc{MÃ¶bius}{Mobius} transform of the
     \code{k}-additive solution.}
   
   \item{glob.eval}{The global evaluations satisfying the given classification.}

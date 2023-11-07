@@ -7,9 +7,9 @@
 \alias{Mobius,game-method}
 \alias{Mobius,set.func-method}
 
-\title{The Möbius transform}
+\title{The MÃ¶bius transform}
 
-\description{Computes the \enc{Möbius}{Mobius} transform of a set function. The \enc{Möbius}{Mobius} transform is the inverse of the zeta transform.}
+\description{Computes the \enc{MÃ¶bius}{Mobius} transform of a set function. The \enc{MÃ¶bius}{Mobius} transform is the inverse of the zeta transform.}
 
 \section{Methods}{
 \describe{
@@ -25,12 +25,12 @@
 
 \references{
   G-C. Rota (1964), \emph{On the foundations of combinatorial theory. I. Theory
-    of \enc{Möbius}{Mobius} functions}, Z. Wahrscheinlichkeitstheorie und
+    of \enc{MÃ¶bius}{Mobius} functions}, Z. Wahrscheinlichkeitstheorie und
   Verw. Gebiete 2, pages 340-368.
   
   
   A. Chateauneuf and J-Y. Jaffray (1989), \emph{Some characterizations of lower 
-  probabilities and other monotone capacities through the use of \enc{Möbius}{Mobius} inversion},
+  probabilities and other monotone capacities through the use of \enc{MÃ¶bius}{Mobius} inversion},
   Mathematical Social Sciences 17, pages 263-283.
   
   M. Grabisch, J-L. Marichal and M. Roubens (2000), \emph{Equivalent

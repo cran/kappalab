@@ -15,7 +15,7 @@
 \section{Methods}{
 \describe{
 
-\item{object = "Mobius.set.func" }{The Shapley value is computed from the \enc{Möbius}{Mobius} transform of a set function.}
+\item{object = "Mobius.set.func" }{The Shapley value is computed from the \enc{MÃ¶bius}{Mobius} transform of a set function.}
 
 \item{object = "card.set.func" }{The Shapley value is computed from a cardinal set function.}
 

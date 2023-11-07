@@ -15,7 +15,7 @@
 \section{Methods}{
 \describe{
 
-\item{object = "Mobius.capacity" }{The veto indices are computed from the \enc{Möbius}{Mobius} transform of a capacity.}
+\item{object = "Mobius.capacity" }{The veto indices are computed from the \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \item{object = "capacity" }{The veto indices are computed directly from a capacity.}
 

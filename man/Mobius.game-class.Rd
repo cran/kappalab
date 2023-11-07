@@ -8,7 +8,7 @@
 
 \title{Class "Mobius.game"}
 
-\description{Class representing the \enc{Möbius}{Mobius} transform of a game.}
+\description{Class representing the \enc{MÃ¶bius}{Mobius} transform of a game.}
 
 \section{Objects from the Class}{Objects can be created by calls to the function \code{Mobius.game}.}
 
@@ -16,11 +16,11 @@
   \describe{
 
     \item{\code{n}:}{Object of class \code{numeric} of length 1 containing the
-      number of elements of the set on which the \enc{Möbius}{Mobius} transform is
+      number of elements of the set on which the \enc{MÃ¶bius}{Mobius} transform is
       defined. }
     
     \item{\code{k}:}{Object of class \code{numeric} of length 1 containg the order
-      of truncation of the \enc{Möbius}{Mobius} transform: subsets whose cardinal is
+      of truncation of the \enc{MÃ¶bius}{Mobius} transform: subsets whose cardinal is
       superior to k are considered to be zero.}
     
    \item{\code{subsets}:}{Object of class \code{numeric} containing
@@ -29,7 +29,7 @@
     
     \item{\code{data}:}{Object of class \code{numeric} of length
       \code{choose(n,0) + ... + choose(n,k)} representing the
-      coefficients of a truncated \enc{Möbius}{Mobius} transform of a game in "natural" order.}
+      coefficients of a truncated \enc{MÃ¶bius}{Mobius} transform of a game in "natural" order.}
     
   }
 }

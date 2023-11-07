@@ -14,7 +14,7 @@
 \section{Methods}{
 \describe{
 
-\item{object = "Mobius.capacity" }{The normalized variance is computed from the \enc{Möbius}{Mobius} transform of a capacity.}
+\item{object = "Mobius.capacity" }{The normalized variance is computed from the \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \item{object = "capacity" }{The normalized variance is computed directly from a capacity.}
 

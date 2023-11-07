@@ -41,17 +41,17 @@
     -epsilon}
   for all \eqn{S} and all \eqn{i}.
   For objects of class \code{Mobius.set.func}, it is
-  required that a similar condition with respect to the \enc{Möbius}{Mobius}
+  required that a similar condition with respect to the \enc{MÃ¶bius}{Mobius}
   representation be satisfied (cf. references hereafter).
 }
 
 \references{
   A. Chateauneuf and J-Y. Jaffray (1989), \emph{Some characterizations of
     lower probabilities and other monotone capacities through the use of
-    \enc{Möbius}{Mobius} inversion}, Mathematical Social Sciences 17:3, pages
+    \enc{MÃ¶bius}{Mobius} inversion}, Mathematical Social Sciences 17:3, pages
   263--283.
 
-  M. Grabisch (2000), \emph{The interaction and \enc{Möbius}{Mobius} representations of fuzzy
+  M. Grabisch (2000), \emph{The interaction and \enc{MÃ¶bius}{Mobius} representations of fuzzy
     measures on finites spaces, k-additive measures: a survey}, in:
   Fuzzy Measures and Integrals: Theory and Applications, M. Grabisch,
   T. Murofushi, and M. Sugeno Eds, Physica Verlag, pages 70-93.

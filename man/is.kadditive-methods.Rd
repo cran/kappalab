@@ -9,7 +9,7 @@
 \title{Test method}
 
 \description{Tests whether a set function is \code{k}-additive, i.e., if its
-  \enc{Möbius}{Mobius} function vanishes for subsets of more than k elements. The set
+  \enc{MÃ¶bius}{Mobius} function vanishes for subsets of more than k elements. The set
   function can be given either under the form of an object of class
   \code{set.func}, \code{card.set.func} or
   \code{Mobius.set.func}. }
@@ -35,7 +35,7 @@
   M. Grabisch (1997), \emph{k-order additive discrete fuzzy measures and their
     representation}, Fuzzy Sets and Systems 92(2), pages 167--189.
 
-  M. Grabisch (2000), \emph{The interaction and \enc{Möbius}{Mobius}
+  M. Grabisch (2000), \emph{The interaction and \enc{MÃ¶bius}{Mobius}
   representations of fuzzy measures on finites spaces, k-additive
   measures: a survey}, in: Fuzzy Measures and Integrals: Theory and
   Applications, M. Grabisch, T. Murofushi, and M. Sugeno Eds, Physica

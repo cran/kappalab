@@ -17,7 +17,7 @@
 
   \item{object = "Mobius.capacity" }{The normalized entropy is computed
     from the
-    \enc{Möbius}{Mobius} transform of a capacity.}
+    \enc{MÃ¶bius}{Mobius} transform of a capacity.}
 
 \item{object = "capacity" }{The normalized entropy is computed directly from a capacity.}
 

@@ -2,7 +2,7 @@
 \alias{Mobius.card.set.func}
 
 
-\title{Creates an object representing the Möbius transform of a cardinal set function.}
+\title{Creates an object representing the MÃ¶bius transform of a cardinal set function.}
 
 \description{Creates objects of class \code{Mobius.card.set.func}: from
   an object of class \code{numeric}.}
@@ -13,9 +13,9 @@ Mobius.card.set.func(object)
 
 \arguments{
    \item{object}{An object of class \code{numeric} containing the
-    coefficients of the cardinal \enc{Möbius}{Mobius} representation. The coefficient
+    coefficients of the cardinal \enc{MÃ¶bius}{Mobius} representation. The coefficient
     at position \code{k} corresponds to the value of the cardinal
-    \enc{Möbius}{Mobius} representation for subsets of size \code{k}.}
+    \enc{MÃ¶bius}{Mobius} representation for subsets of size \code{k}.}
 }
 
 \value{

@@ -11,8 +11,8 @@
 
 
 \description{Computes the zeta transform of a set function given under
-  the form of its \enc{Möbius}{Mobius} transform. The zeta transform is the inverse of
-  the \enc{Möbius}{Mobius} transform.
+  the form of its \enc{MÃ¶bius}{Mobius} transform. The zeta transform is the inverse of
+  the \enc{MÃ¶bius}{Mobius} transform.
 }
 
 \section{Methods}{
@@ -29,12 +29,12 @@
 
 \references{
    G-C. Rota (1964), \emph{On the foundations of combinatorial theory. I. Theory
-    of \enc{Möbius}{Mobius} functions}, Z. Wahrscheinlichkeitstheorie und
+    of \enc{MÃ¶bius}{Mobius} functions}, Z. Wahrscheinlichkeitstheorie und
   Verw. Gebiete 2, pages 340-368.
   
   
   A. Chateauneuf and J-Y. Jaffray (1989), \emph{Some characterizations of lower 
-  probabilities and other monotone capacities through the use of \enc{Möbius}{Mobius} inversion},
+  probabilities and other monotone capacities through the use of \enc{MÃ¶bius}{Mobius} inversion},
   Mathematical Social Sciences 17, pages 263-283.
   
   M. Grabisch, J-L. Marichal and M. Roubens (2000), \emph{Equivalent

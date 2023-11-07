@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright © 2005 Michel Grabisch and Ivan Kojadinovic    
+# Copyright Â© 2005 Michel Grabisch and Ivan Kojadinovic    
 #
 # Ivan.Kojadinovic@polytech.univ-nantes.fr
 #

@@ -23,7 +23,7 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
     \code{Mobius.capacity} is to be defined.}
   
   \item{k}{Object of class \code{numeric} imposing that the solution is at
-    most a k-additive capacity (the \enc{Möbius}{Mobius} transform of subsets whose cardinal is
+    most a k-additive capacity (the \enc{MÃ¶bius}{Mobius} transform of subsets whose cardinal is
     superior to \code{k} vanishes).}
   
   \item{A.Choquet.preorder}{Object of class \code{matrix} containing the
@@ -98,7 +98,7 @@ A.inter.additive.partition = NULL, epsilon = 1e-6)
   The function returns a list structured as follows:
 
   \item{solution}{Object of class \code{Mobius.capacity} containing the
-    \enc{Möbius}{Mobius} transform of the \code{k}-additive solution, if any.}
+    \enc{MÃ¶bius}{Mobius} transform of the \code{k}-additive solution, if any.}
   
   \item{value}{Value of the objective function.}
 

@@ -14,7 +14,7 @@
   the normalization is performed by dividing each coefficient of the
   capacity by the value of the capacity on the universe. In the case of
   objects of class \code{Mobius.capacity}, the normalization is
-  performed by dividing each coefficient of the \enc{Möbius}{Mobius} transform by the
+  performed by dividing each coefficient of the \enc{MÃ¶bius}{Mobius} transform by the
   sum of all the coefficients.  
 }
 \section{Methods}{
